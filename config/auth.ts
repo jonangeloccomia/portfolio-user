@@ -7,6 +7,7 @@ import { UserModel } from "@/db/models/user";
 import { env } from "@/config/env";
 import { magicLinkHtml, magicLinkText } from "@/lib/email-templates";
 import { withUniqueSlug } from "@/lib/slug";
+import { isDisposableEmail } from "@/lib/disposable-email";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: MongoDBAdapter(mongoClientPromise),
@@ -41,6 +42,15 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }),
   ],
   callbacks: {
+    async signIn({ user, email }) {
+      // Blocks the magic-link email itself from being sent to disposable
+      // addresses — the abuse this stops is mass throwaway-domain sign-in
+      // requests, not just account creation.
+      if (email?.verificationRequest && user.email && isDisposableEmail(user.email)) {
+        return false;
+      }
+      return true;
+    },
     async session({ session }) {
       if (!session.user.email) return session;
 
@@ -50,8 +60,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       if (!profile) return session;
 
       if (!profile.slug) {
+        const nameForSlug =
+          [profile.firstName, profile.lastName].filter(Boolean).join(" ") ||
+          profile.email.split("@")[0];
         profile.slug = await withUniqueSlug(
-          `${profile.firstName} ${profile.lastName}`,
+          nameForSlug,
           async (candidate) => {
             await UserModel.updateOne(
               { _id: profile._id, slug: { $exists: false } },
@@ -72,6 +85,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       session.user.liveExpiresAt = profile.liveExpiresAt
         ? profile.liveExpiresAt.toISOString()
         : undefined;
+      session.user.generationTokens = profile.generationTokens;
 
       return session;
     },

@@ -9,6 +9,7 @@ declare module "next-auth" {
       slug?: string;
       liveTemplateId?: string;
       liveExpiresAt?: string;
+      generationTokens?: number;
     } & DefaultSession["user"];
   }
 }

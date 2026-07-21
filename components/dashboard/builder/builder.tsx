@@ -37,7 +37,10 @@ import {
 } from "@/components/ui/dialog";
 import { LandingPreviewIcon } from "@/components/landing-preview-icon";
 import { STARTER_TEMPLATE_CONTENT, STARTER_TEMPLATE_NAME } from "@/lib/starter-templates";
+import { useUser } from "@/lib/use-user";
 import { GenerateWithAi } from "./generate-dialog";
+
+const DEFAULT_GENERATION_TOKENS = 7;
 
 type Template = {
   _id: string;
@@ -60,9 +63,13 @@ function NewTemplateDialog({
   triggerClassName?: string;
 }) {
   const router = useRouter();
+  const { user, refetch } = useUser();
   const [open, setOpen] = useState(false);
   const [creating, setCreating] = useState(false);
   const [view, setView] = useState<"choose" | "ai">("choose");
+
+  const tokensLeft = user?.generationTokens ?? DEFAULT_GENERATION_TOKENS;
+  const noTokensLeft = tokensLeft <= 0;
 
   const resetAndClose = () => {
     setOpen(false);
@@ -140,12 +147,19 @@ function NewTemplateDialog({
               </Link>
               <button
                 type="button"
+                disabled={noTokensLeft}
                 onClick={() => setView("ai")}
-                className="flex flex-col items-start gap-2 rounded-xl border border-border p-4 text-left transition-colors hover:border-primary hover:bg-muted"
+                className="flex flex-col items-start gap-2 rounded-xl border border-border p-4 text-left transition-colors hover:border-primary hover:bg-muted disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:border-border disabled:hover:bg-transparent"
               >
                 <SparklesIcon className="size-5 text-primary" />
-                <p className="text-sm font-medium text-foreground">Generate with AI</p>
-                <p className="text-xs text-muted-foreground">Describe the page you want.</p>
+                <p className="text-sm font-medium text-foreground">
+                  Generate with AI {noTokensLeft ? "" : `(${tokensLeft} left)`}
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  {noTokensLeft
+                    ? "No generations left."
+                    : "Describe the page you want."}
+                </p>
               </button>
             </div>
           </>
@@ -154,7 +168,10 @@ function NewTemplateDialog({
             creating={creating}
             onGenerating={setCreating}
             onBack={() => setView("choose")}
-            onGenerated={(templateId) => router.push(`/dashboard/builder/${templateId}`)}
+            onGenerated={(templateId) => {
+              void refetch();
+              router.push(`/dashboard/builder/${templateId}`);
+            }}
           />
         )}
       </DialogContent>

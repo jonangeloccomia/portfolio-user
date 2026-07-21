@@ -7,6 +7,7 @@ import { validate } from "@/middleware/validate";
 import { requireUser } from "@/middleware/auth";
 import { connectToDatabase } from "@/db/connection";
 import { TemplateModel } from "@/db/models/template";
+import { UserModel } from "@/db/models/user";
 import { env } from "@/config/env";
 import { generatedPageSchema } from "@/lib/ai-template/schema";
 import { buildCraftContent } from "@/lib/ai-template/builder";
@@ -14,6 +15,8 @@ import { buildCraftContent } from "@/lib/ai-template/builder";
 const generateSchema = z.object({
   prompt: z.string().min(1).max(500),
 });
+
+export const DEFAULT_GENERATION_TOKENS = 7;
 
 const SYSTEM_PROMPT = `You generate content for a landing page builder. The page is made of a small fixed library of section archetypes — you only provide content, never layout or styling code. A nav bar and footer are added automatically from the template name, so don't try to create them.
 
@@ -33,6 +36,14 @@ Produce 3-5 sections that tell a coherent landing-page story for what the user d
 export const POST = withErrorHandling(async (request: Request) => {
   const user = await requireUser();
   const { prompt } = await validate(generateSchema, await request.json());
+
+  const tokensLeft = user.generationTokens ?? DEFAULT_GENERATION_TOKENS;
+  if (tokensLeft <= 0) {
+    throw new AppError(
+      429,
+      "You've used all your AI generations. Build from a starter template or start from scratch instead."
+    );
+  }
 
   const client = new Anthropic({ apiKey: env.ANTHROPIC_API_KEY });
 
@@ -61,6 +72,8 @@ export const POST = withErrorHandling(async (request: Request) => {
     name: parsed.data.templateName,
     content: JSON.stringify(content),
   });
+
+  await UserModel.updateOne({ _id: user._id }, { $inc: { generationTokens: -1 } });
 
   return NextResponse.json({ template }, { status: 201 });
 });

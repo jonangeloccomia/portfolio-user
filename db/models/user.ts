@@ -32,6 +32,7 @@ const userSchema = new Schema(
     },
     liveExpiresAt: { type: Date, default: null },
     stripeCustomerId: { type: String, default: null },
+    generationTokens: { type: Number, default: 7, required: true },
   },
   { timestamps: true }
 );
