@@ -40,7 +40,7 @@ import { STARTER_TEMPLATE_CONTENT, STARTER_TEMPLATE_NAME } from "@/lib/starter-t
 import { useUser } from "@/lib/use-user";
 import { GenerateWithAi } from "./generate-dialog";
 
-const DEFAULT_GENERATION_TOKENS = 7;
+const DEFAULT_GENERATION_TOKENS = 3;
 
 type Template = {
   _id: string;

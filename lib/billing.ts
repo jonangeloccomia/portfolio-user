@@ -45,7 +45,7 @@ export async function recordPaymentAndExtend(params: {
         throw error;
       }
 
-      const user = await UserModel.findById(params.userId).session(session);
+      const user = await UserModel.findById(params.userId).session(session).lean();
       if (!user) {
         throw new Error(`User ${params.userId} not found while recording payment`);
       }
@@ -53,9 +53,16 @@ export async function recordPaymentAndExtend(params: {
       const activeExpiry =
         user.liveExpiresAt && user.liveExpiresAt > new Date() ? user.liveExpiresAt : new Date();
 
-      user.liveExpiresAt = new Date(activeExpiry.getTime() + THIRTY_DAYS_MS);
-      user.liveTemplateId = new mongoose.Types.ObjectId(params.templateId);
-      await user.save({ session });
+      await UserModel.updateOne(
+        { _id: params.userId },
+        {
+          $set: {
+            liveExpiresAt: new Date(activeExpiry.getTime() + THIRTY_DAYS_MS),
+            liveTemplateId: new mongoose.Types.ObjectId(params.templateId),
+          },
+        },
+        { session }
+      );
     });
 
     return result;

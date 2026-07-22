@@ -37,8 +37,12 @@ export const POST = withErrorHandling(async (request: Request) => {
   const user = await requireUser();
   const { prompt } = await validate(generateSchema, await request.json());
 
-  const tokensLeft = user.generationTokens ?? DEFAULT_GENERATION_TOKENS;
-  if (tokensLeft <= 0) {
+  await connectToDatabase();
+  const reserved = await UserModel.findOneAndUpdate(
+    { _id: user._id, generationTokens: { $gt: 0 } },
+    { $inc: { generationTokens: -1 } }
+  );
+  if (!reserved) {
     throw new AppError(
       429,
       "You've used all your AI generations. Build from a starter template or start from scratch instead."
@@ -66,14 +70,11 @@ export const POST = withErrorHandling(async (request: Request) => {
 
   const content = buildCraftContent(parsed.data);
 
-  await connectToDatabase();
   const template = await TemplateModel.create({
     userId: user._id,
     name: parsed.data.templateName,
     content: JSON.stringify(content),
   });
-
-  await UserModel.updateOne({ _id: user._id }, { $inc: { generationTokens: -1 } });
 
   return NextResponse.json({ template }, { status: 201 });
 });
