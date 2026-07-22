@@ -36,6 +36,7 @@ export const POST = withErrorHandling(async (request: Request) => {
   const checkoutSession = await stripe.checkout.sessions.create({
     mode: "payment",
     customer: stripeCustomerId,
+    billing_address_collection: "auto",
     line_items: [
       {
         quantity: 1,
@@ -49,6 +50,16 @@ export const POST = withErrorHandling(async (request: Request) => {
     metadata: {
       userId: String(user._id),
       templateId: String(template._id),
+    },
+    invoice_creation: {
+      enabled: true,
+      invoice_data: {
+        description: `Live page — 1 month (${template.name})`,
+        metadata: {
+          userId: String(user._id),
+          templateId: String(template._id),
+        },
+      },
     },
     success_url: `${origin}/dashboard/published?success=1`,
     cancel_url: `${origin}/dashboard/published?canceled=1`,

@@ -6,6 +6,7 @@ import { LayoutTemplateIcon, GlobeIcon } from "lucide-react";
 
 import { useUser } from "@/lib/use-user";
 import { GettingStartedGuide } from "@/components/dashboard/getting-started-guide";
+import { PortfolioNotice } from "@/components/dashboard/portfolio-notice";
 
 type Template = { _id: string; name: string; updatedAt: string };
 
@@ -32,6 +33,8 @@ export function DashboardOverview() {
           Here&apos;s where your landing pages stand.
         </p>
       </div>
+
+      <PortfolioNotice />
 
       <div className="grid gap-4 sm:grid-cols-2">
         <Link

@@ -15,6 +15,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { SelectInput } from "@/components/dashboard/builder/editor/inputs/select-input";
+import { PortfolioNotice } from "@/components/dashboard/portfolio-notice";
 
 type Template = { _id: string; name: string; updatedAt: string };
 
@@ -122,6 +123,8 @@ export default function Published() {
           Make one of your templates live at a public URL.
         </p>
       </div>
+
+      <PortfolioNotice />
 
       {banner === "success" && (
         <p className="rounded-md border border-border bg-muted px-3 py-2 text-sm text-foreground">

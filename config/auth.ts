@@ -105,6 +105,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
               email: user.email,
               role: "user",
               slug,
+              generationTokens: 3,
             },
           },
           { upsert: true }
