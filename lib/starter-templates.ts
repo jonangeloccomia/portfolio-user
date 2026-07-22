@@ -2015,7 +2015,7 @@ export const STARTER_TEMPLATE_CONTENT = {
     },
     "isCanvas": false,
     "props": {
-      "videoId": "u31qwQUeGuM",
+      "videoId": "ihOeBVxbpq4",
       "aspectRatio": "16:9"
     },
     "displayName": "Video",

@@ -20,7 +20,7 @@ const ASPECT_PADDING: Record<VideoProps["aspectRatio"], string> = {
 };
 
 export const Video: UserComponent<Partial<VideoProps>> = ({
-  videoId = "u31qwQUeGuM",
+  videoId = "ihOeBVxbpq4",
   aspectRatio = "16:9",
 }) => {
   const {
@@ -95,6 +95,6 @@ function VideoSettings() {
 
 Video.craft = {
   displayName: "Video",
-  props: { videoId: "u31qwQUeGuM", aspectRatio: "16:9" },
+  props: { videoId: "ihOeBVxbpq4", aspectRatio: "16:9" },
   related: { settings: VideoSettings },
 };
