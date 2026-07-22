@@ -30,6 +30,9 @@ import { CtaButton } from "./editor/elements/cta-button";
 import { Container } from "./editor/elements/container";
 import { Video } from "./editor/elements/video";
 import { ImageBlock } from "./editor/elements/image";
+import { ResponsivePreviewProvider, useResponsivePreview } from "./editor/breakpoint-context";
+import { SegmentedControl } from "./editor/segmented-control";
+import type { Breakpoint } from "./editor/types";
 
 function HistoryControls() {
   const { actions, canUndo, canRedo } = useEditor((_, query) => ({
@@ -77,6 +80,22 @@ function PreviewToggle() {
       {enabled ? <EyeIcon data-icon="inline-start" /> : <EyeOffIcon data-icon="inline-start" />}
       {enabled ? "Preview" : "Exit preview"}
     </Button>
+  );
+}
+
+function DeviceToggle() {
+  const { breakpoint, setBreakpoint } = useResponsivePreview();
+
+  return (
+    <SegmentedControl<Breakpoint>
+      value={breakpoint}
+      options={[
+        { value: "desktop", label: "Desktop" },
+        { value: "tablet", label: "Tablet" },
+        { value: "mobile", label: "Mobile" },
+      ]}
+      onChange={setBreakpoint}
+    />
   );
 }
 
@@ -163,19 +182,28 @@ function FullscreenToggle({
 
 const PANEL_WIDTH = 256;
 
+const CANVAS_WIDTH: Record<Breakpoint, string> = {
+  desktop: "100%",
+  tablet: "768px",
+  mobile: "375px",
+};
+
 function EditorBody({ initialContent }: { initialContent?: string }) {
   const { enabled } = useEditor((state) => ({ enabled: state.options.enabled }));
+  const { breakpoint } = useResponsivePreview();
 
   return (
     <div className="relative flex-1 overflow-hidden">
       <div className="h-full overflow-y-auto">
-        {initialContent ? (
-          <Frame data={initialContent} />
-        ) : (
-          <Frame>
-            <Element is={PageCanvas} canvas />
-          </Frame>
-        )}
+        <div style={{ width: CANVAS_WIDTH[breakpoint], marginInline: "auto" }}>
+          {initialContent ? (
+            <Frame data={initialContent} />
+          ) : (
+            <Frame>
+              <Element is={PageCanvas} canvas />
+            </Frame>
+          )}
+        </div>
       </div>
       {enabled && (
         <>
@@ -206,33 +234,36 @@ export default function BuilderNew({
   const [name, setName] = useState(initialName ?? "Untitled template");
 
   return (
-    <Editor
-      resolver={{ PageCanvas, Header, TextBlock, CtaButton, Container, Video, ImageBlock }}
-      onRender={RenderNode}
-    >
-      <div className="flex h-full flex-col">
-        <div className="flex items-center justify-between border-b border-border p-4">
-          <div className="flex items-center gap-3">
-            <Button asChild variant="ghost" size="icon-sm">
-              <Link href="/dashboard/builder">
-                <ArrowLeftIcon />
-              </Link>
-            </Button>
-            <TitleInput name={name} onChange={setName} />
+    <ResponsivePreviewProvider>
+      <Editor
+        resolver={{ PageCanvas, Header, TextBlock, CtaButton, Container, Video, ImageBlock }}
+        onRender={RenderNode}
+      >
+        <div className="flex h-full flex-col">
+          <div className="flex items-center justify-between border-b border-border p-4">
+            <div className="flex items-center gap-3">
+              <Button asChild variant="ghost" size="icon-sm">
+                <Link href="/dashboard/builder">
+                  <ArrowLeftIcon />
+                </Link>
+              </Button>
+              <TitleInput name={name} onChange={setName} />
+            </div>
+            <div className="flex items-center gap-2">
+              <DeviceToggle />
+              <HistoryControls />
+              <FullscreenToggle
+                isFullscreen={isFullscreen}
+                onToggle={() => setIsFullscreen(!isFullscreen)}
+              />
+              <PreviewToggle />
+              <SaveButton templateId={templateId} name={name} />
+            </div>
           </div>
-          <div className="flex items-center gap-2">
-            <HistoryControls />
-            <FullscreenToggle
-              isFullscreen={isFullscreen}
-              onToggle={() => setIsFullscreen(!isFullscreen)}
-            />
-            <PreviewToggle />
-            <SaveButton templateId={templateId} name={name} />
-          </div>
-        </div>
 
-        <EditorBody initialContent={initialContent} />
-      </div>
-    </Editor>
+          <EditorBody initialContent={initialContent} />
+        </div>
+      </Editor>
+    </ResponsivePreviewProvider>
   );
 }

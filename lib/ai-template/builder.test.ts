@@ -2,6 +2,12 @@ import assert from "node:assert/strict";
 import { buildCraftContent } from "./builder";
 import type { GeneratedPage } from "./schema";
 
+function subtreeHasType(tree: Record<string, any>, rootId: string, typeName: string): boolean {
+  const node = tree[rootId];
+  if (node.type.resolvedName === typeName) return true;
+  return node.nodes.some((childId: string) => subtreeHasType(tree, childId, typeName));
+}
+
 function assertStructurallyValid(tree: Record<string, any>) {
   const ids = Object.keys(tree);
   assert.ok(ids.includes("ROOT"), "tree must include ROOT");
@@ -24,8 +30,8 @@ function assertStructurallyValid(tree: Record<string, any>) {
   const page: GeneratedPage = {
     templateName: "Test Page",
     sections: [
-      { type: "hero", headline: "Welcome", body: "Body text", buttonLabel: "Get started", withImage: true, theme: "light" },
-      { type: "cta_banner", headline: "Ready?", body: "Join now", buttonLabel: "Sign up", theme: "dark" },
+      { type: "hero", eyebrow: "", headline: "Welcome", body: "Body text", buttonLabel: "Get started", withImage: true, theme: "light" },
+      { type: "cta_banner", eyebrow: "", headline: "Ready?", body: "Join now", buttonLabel: "Sign up", theme: "dark" },
     ],
   };
   const tree = buildCraftContent(page);
@@ -40,20 +46,25 @@ function assertStructurallyValid(tree: Record<string, any>) {
   const page: GeneratedPage = {
     templateName: "Test Page",
     sections: [
-      { type: "hero", headline: "Welcome", body: "Body text", buttonLabel: "", withImage: false, theme: "dark" },
-      { type: "cta_banner", headline: "Ready?", body: "Join now", buttonLabel: "Sign up", theme: "light" },
+      { type: "hero", eyebrow: "", headline: "Welcome", body: "Body text", buttonLabel: "", withImage: false, theme: "dark" },
+      { type: "cta_banner", eyebrow: "", headline: "Ready?", body: "Join now", buttonLabel: "Sign up", theme: "light" },
     ],
   };
   const tree = buildCraftContent(page);
   assertStructurallyValid(tree);
-  // Check that the hero section specifically doesn't produce a button by verifying
-  // no CtaButton exists as a direct child of the hero's text column container
-  const rootChildren = tree.ROOT.nodes;
-  const heroContainerId = rootChildren[0];
-  const heroChildren = tree[heroContainerId].nodes;
-  const textColId = heroChildren[0];
-  const textColChildren = tree[textColId].nodes;
-  const heroHasButton = textColChildren.some((id: string) => tree[id].type.resolvedName === "CtaButton");
+  // buildCraftContent always wraps sections with a nav band (unconditional) and a
+  // footer band (unconditional) — locate the hero band by its own content (the
+  // Header carrying this section's headline) rather than assuming it's ROOT.nodes[0],
+  // since the nav band occupies that slot. Nav also always renders its own CTA
+  // button, so scoping the CtaButton search to the hero's own subtree (not the
+  // whole tree) is required too — otherwise the nav's button is a false positive.
+  const heroHeadline = Object.values(tree).find(
+    (n: any) => n.type.resolvedName === "Header" && n.props.text === "Welcome"
+  );
+  assert.ok(heroHeadline, "hero must produce a Header with the section's headline");
+  const heroBandId = (heroHeadline as any).parent && tree[(heroHeadline as any).parent].parent;
+  assert.ok(heroBandId, "hero header must be nested inside the hero's band container");
+  const heroHasButton = subtreeHasType(tree, heroBandId, "CtaButton");
   assert.equal(heroHasButton, false, "hero with empty buttonLabel must not produce a CtaButton node");
   console.log("PASS: hero without image/button structurally valid");
 }
@@ -64,7 +75,7 @@ function assertStructurallyValid(tree: Record<string, any>) {
     templateName: "Test Page",
     sections: [
       { type: "feature_grid", headline: "", imageCount: 5, theme: "brand" },
-      { type: "cta_banner", headline: "Ready?", body: "Join now", buttonLabel: "Sign up", theme: "dark" },
+      { type: "cta_banner", eyebrow: "", headline: "Ready?", body: "Join now", buttonLabel: "Sign up", theme: "dark" },
     ],
   };
   const tree = buildCraftContent(page);
@@ -79,8 +90,8 @@ function assertStructurallyValid(tree: Record<string, any>) {
   const page: GeneratedPage = {
     templateName: "Test Page",
     sections: [
-      { type: "content_split", headline: "What we do", body: "Details", theme: "light" },
-      { type: "cta_banner", headline: "Ready?", body: "Join now", buttonLabel: "Sign up", theme: "dark" },
+      { type: "content_split", eyebrow: "", headline: "What we do", body: "Details", theme: "light" },
+      { type: "cta_banner", eyebrow: "", headline: "Ready?", body: "Join now", buttonLabel: "Sign up", theme: "dark" },
     ],
   };
   const tree = buildCraftContent(page);
@@ -93,17 +104,23 @@ function assertStructurallyValid(tree: Record<string, any>) {
   const page: GeneratedPage = {
     templateName: "Full Page",
     sections: [
-      { type: "hero", headline: "H", body: "B", buttonLabel: "Go", withImage: true, theme: "light" },
+      { type: "hero", eyebrow: "", headline: "H", body: "B", buttonLabel: "Go", withImage: true, theme: "light" },
       { type: "feature_grid", headline: "Trusted by", imageCount: 4, theme: "light" },
-      { type: "content_split", headline: "What we do", body: "Details", theme: "brand" },
-      { type: "cta_banner", headline: "Ready?", body: "Join now", buttonLabel: "Sign up", theme: "dark" },
+      { type: "content_split", eyebrow: "", headline: "What we do", body: "Details", theme: "brand" },
+      { type: "cta_banner", eyebrow: "", headline: "Ready?", body: "Join now", buttonLabel: "Sign up", theme: "dark" },
     ],
   };
   const tree = buildCraftContent(page);
   assertStructurallyValid(tree);
   const ids = Object.keys(tree);
   assert.equal(ids.length, new Set(ids).size, "all node ids must be unique");
-  assert.equal(tree.ROOT.nodes.length, 4, "ROOT must have exactly one top-level container per section");
+  // buildCraftContent always wraps the requested sections with one nav band and
+  // one footer band, in addition to one top-level container per section.
+  assert.equal(
+    tree.ROOT.nodes.length,
+    page.sections.length + 2,
+    "ROOT must have one container per section plus the nav and footer bands"
+  );
   console.log("PASS: full four-archetype page structurally valid with unique ids");
 }
 

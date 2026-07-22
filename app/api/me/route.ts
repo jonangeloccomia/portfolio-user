@@ -6,6 +6,7 @@ import { requireSession } from "@/middleware/auth";
 import { connectToDatabase } from "@/db/connection";
 import { UserModel } from "@/db/models/user";
 import { mongoClientPromise } from "@/db/mongo-client";
+import { clearSessionCookies } from "@/lib/session-cookies";
 
 export const GET = withErrorHandling(async () => {
   const session = await requireSession();
@@ -50,5 +51,7 @@ export const DELETE = withErrorHandling(async () => {
     await db.collection("users").deleteOne({ _id: authUser._id });
   }
 
-  return NextResponse.json({ ok: true });
+  const response = NextResponse.json({ ok: true });
+  clearSessionCookies(response);
+  return response;
 });

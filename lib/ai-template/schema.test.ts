@@ -6,8 +6,8 @@ import { generatedPageSchema } from "./schema";
   const result = generatedPageSchema.safeParse({
     templateName: "Fitness Landing",
     sections: [
-      { type: "hero", headline: "H", body: "B", buttonLabel: "Go", withImage: true, theme: "light" },
-      { type: "cta_banner", headline: "Ready?", body: "Join", buttonLabel: "Sign up", theme: "dark" },
+      { type: "hero", eyebrow: "", headline: "H", body: "B", buttonLabel: "Go", withImage: true, theme: "light" },
+      { type: "cta_banner", eyebrow: "", headline: "Ready?", body: "Join", buttonLabel: "Sign up", theme: "dark" },
     ],
   });
   assert.equal(result.success, true, "valid page must parse successfully");

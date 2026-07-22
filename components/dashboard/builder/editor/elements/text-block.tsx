@@ -9,13 +9,17 @@ import { SegmentedControl } from "../segmented-control";
 import { ColorInput } from "../inputs/color-input";
 import { SliderInput } from "../inputs/slider-input";
 import { SpacingInput, toCssLength, type Spacing } from "../inputs/spacing-input";
-import type { Align } from "../types";
+import { breakpointFieldLabel, ResetToDefaultButton } from "../inputs/breakpoint-field";
+import { useResponsivePreview } from "../breakpoint-context";
+import { buildResponsiveStyle, defaultFontSize, resolveResponsiveValue } from "@/lib/responsive";
+import type { Align, Responsive } from "../types";
 
 export type TextBlockProps = {
   text: string;
   align: Align;
   textColor: string;
   fontSize: number;
+  fontSizeResponsive: Responsive<number>;
   lineHeight: number;
   padding: Spacing;
   margin: Spacing;
@@ -28,6 +32,7 @@ export const TextBlock: UserComponent<Partial<TextBlockProps>> = ({
   align = "left",
   textColor = "#6b7280",
   fontSize = 16,
+  fontSizeResponsive = {},
   lineHeight = 1.6,
   padding = DEFAULT_SPACING,
   margin = DEFAULT_SPACING,
@@ -35,32 +40,46 @@ export const TextBlock: UserComponent<Partial<TextBlockProps>> = ({
   const {
     connectors: { connect },
   } = useNode();
+  const { id } = useNode();
+
+  const responsiveStyle = buildResponsiveStyle(id, {
+    tablet: {
+      fontSize: `${resolveResponsiveValue("tablet", fontSize, fontSizeResponsive, defaultFontSize)}px`,
+    },
+    mobile: {
+      fontSize: `${resolveResponsiveValue("mobile", fontSize, fontSizeResponsive, defaultFontSize)}px`,
+    },
+  });
 
   return (
-    <p
-      ref={(ref: HTMLParagraphElement | null) => {
-        if (ref) connect(ref);
-      }}
-      style={{
-        color: textColor,
-        fontSize: `${fontSize}px`,
-        lineHeight,
-        paddingTop: toCssLength(padding.top),
-        paddingRight: toCssLength(padding.right),
-        paddingBottom: toCssLength(padding.bottom),
-        paddingLeft: toCssLength(padding.left),
-        marginTop: toCssLength(margin.top),
-        marginRight: toCssLength(margin.right),
-        marginBottom: toCssLength(margin.bottom),
-        marginLeft: toCssLength(margin.left),
-      }}
-      className={cn(
-        "whitespace-pre-wrap",
-        align === "center" ? "text-center" : "text-left"
-      )}
-    >
-      {text}
-    </p>
+    <>
+      <p
+        ref={(ref: HTMLParagraphElement | null) => {
+          if (ref) connect(ref);
+        }}
+        style={{
+          color: textColor,
+          fontSize: `${fontSize}px`,
+          lineHeight,
+          paddingTop: toCssLength(padding.top),
+          paddingRight: toCssLength(padding.right),
+          paddingBottom: toCssLength(padding.bottom),
+          paddingLeft: toCssLength(padding.left),
+          marginTop: toCssLength(margin.top),
+          marginRight: toCssLength(margin.right),
+          marginBottom: toCssLength(margin.bottom),
+          marginLeft: toCssLength(margin.left),
+        }}
+        className={cn(
+          "whitespace-pre-wrap",
+          align === "center" ? "text-center" : "text-left",
+          `rn-${id}`
+        )}
+      >
+        {text}
+      </p>
+      {responsiveStyle && <style>{responsiveStyle}</style>}
+    </>
   );
 };
 
@@ -70,6 +89,7 @@ function TextBlockSettings() {
     align,
     textColor,
     fontSize,
+    fontSizeResponsive,
     lineHeight,
     padding,
     margin,
@@ -79,10 +99,15 @@ function TextBlockSettings() {
     align: node.data.props.align,
     textColor: node.data.props.textColor,
     fontSize: node.data.props.fontSize,
+    fontSizeResponsive: node.data.props.fontSizeResponsive,
     lineHeight: node.data.props.lineHeight,
     padding: node.data.props.padding,
     margin: node.data.props.margin,
   }));
+  const { breakpoint } = useResponsivePreview();
+
+  const effectiveFontSize = resolveResponsiveValue(breakpoint, fontSize, fontSizeResponsive, defaultFontSize);
+  const isFontSizeOverridden = breakpoint !== "desktop" && fontSizeResponsive?.[breakpoint] !== undefined;
 
   return (
     <>
@@ -123,17 +148,34 @@ function TextBlockSettings() {
           })
         }
       />
-      <SliderInput
-        label="Font size"
-        value={fontSize}
-        min={10}
-        max={48}
-        onChange={(value) =>
-          setProp((props: TextBlockProps) => {
-            props.fontSize = value;
-          })
-        }
-      />
+      <div className="flex flex-col gap-1">
+        <SliderInput
+          label={breakpointFieldLabel("Font size", breakpoint)}
+          value={effectiveFontSize}
+          min={10}
+          max={48}
+          onChange={(value) =>
+            setProp((props: TextBlockProps) => {
+              if (breakpoint === "desktop") {
+                props.fontSize = value;
+              } else {
+                props.fontSizeResponsive = { ...props.fontSizeResponsive, [breakpoint]: value };
+              }
+            })
+          }
+        />
+        {isFontSizeOverridden && (
+          <ResetToDefaultButton
+            onClick={() =>
+              setProp((props: TextBlockProps) => {
+                const next = { ...props.fontSizeResponsive };
+                delete next[breakpoint];
+                props.fontSizeResponsive = next;
+              })
+            }
+          />
+        )}
+      </div>
       <SliderInput
         label="Line height"
         value={lineHeight}
@@ -176,6 +218,7 @@ TextBlock.craft = {
     align: "left",
     textColor: "#6b7280",
     fontSize: 16,
+    fontSizeResponsive: {},
     lineHeight: 1.6,
     padding: { top: "0", right: "0", bottom: "0", left: "0" },
     margin: { top: "0", right: "0", bottom: "0", left: "0" },

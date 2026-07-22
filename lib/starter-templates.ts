@@ -1,4 +1,4 @@
-export const STARTER_TEMPLATE_NAME = "Campaignr";
+export const STARTER_TEMPLATE_NAME = "Untitled Template";
 
 // Campaignr — modernized starter template for Craft.js
 //
@@ -17,18 +17,25 @@ export const STARTER_TEMPLATE_NAME = "Campaignr";
 // Images use stable ?seed= URLs so the template doesn't reshuffle on every load.
 
 export const STARTER_TEMPLATE_CONTENT = {
-  ROOT: {
-    type: { resolvedName: "PageCanvas" },
-    isCanvas: true,
-    props: {
-      background: "#ffffff",
-      textColor: "#0f1a14",
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
+  "ROOT": {
+    "type": {
+      "resolvedName": "PageCanvas"
     },
-    displayName: "Page",
-    custom: {},
-    hidden: false,
-    nodes: [
+    "isCanvas": true,
+    "props": {
+      "background": "#ffffff",
+      "textColor": "#0f1a14",
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      }
+    },
+    "displayName": "Page",
+    "custom": {},
+    "hidden": false,
+    "nodes": [
       "navBar0001",
       "hero000001",
       "logos00001",
@@ -36,1348 +43,2343 @@ export const STARTER_TEMPLATE_CONTENT = {
       "dark000001",
       "demo000001",
       "ctaBand001",
-      "footer0001",
+      "footer0001"
     ],
-    linkedNodes: {},
+    "linkedNodes": {}
   },
-
-  // ===================== NAV =====================
-  navBar0001: {
-    type: { resolvedName: "Container" },
-    isCanvas: true,
-    props: {
-      background: "#ffffff",
-      padding: { top: "18", right: "24", bottom: "18", left: "24" },
-      margin: { top: "0", right: "auto", bottom: "0", left: "auto" },
-      borderRadius: 0,
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "space-between",
-      alignItems: "center",
-      gap: "20",
-      width: "1024",
-      height: "max-content",
-      gridTemplateColumns: "",
-      gridTemplateRows: "",
+  "navBar0001": {
+    "type": {
+      "resolvedName": "Container"
     },
-    displayName: "Container",
-    custom: {},
-    parent: "ROOT",
-    hidden: false,
-    nodes: ["navBrand01", "navCta0001"],
-    linkedNodes: {},
-  },
-  navBrand01: {
-    type: { resolvedName: "Header" },
-    isCanvas: false,
-    props: {
-      text: "Campaignr",
-      level: "h1",
-      align: "left",
-      textColor: "#16a34a",
-      fontSize: 22,
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
+    "isCanvas": true,
+    "props": {
+      "background": "#ffffff",
+      "padding": {
+        "top": "18",
+        "right": "24",
+        "bottom": "18",
+        "left": "24"
+      },
+      "paddingResponsive": {},
+      "margin": {
+        "top": "0",
+        "right": "auto",
+        "bottom": "0",
+        "left": "auto"
+      },
+      "marginResponsive": {},
+      "borderRadius": 0,
+      "border": "",
+      "display": "flex",
+      "flexDirection": "row",
+      "flexDirectionResponsive": {
+        "mobile": "row"
+      },
+      "justifyContent": "space-between",
+      "alignItems": "center",
+      "gap": "20",
+      "width": "100%",
+      "height": "max-content",
+      "maxWidth": "1024",
+      "columns": 3,
+      "columnsResponsive": {},
+      "gridTemplateColumns": "",
+      "gridTemplateColumnsResponsive": {},
+      "gridTemplateRows": ""
     },
-    displayName: "Header",
-    custom: {},
-    parent: "navBar0001",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
+    "displayName": "Container",
+    "custom": {},
+    "parent": "ROOT",
+    "hidden": false,
+    "nodes": [
+      "navBrand01",
+      "navCta0001"
+    ],
+    "linkedNodes": {}
   },
-  navCta0001: {
-    type: { resolvedName: "CtaButton" },
-    isCanvas: false,
-    props: {
-      label: "Start free",
-      href: "#",
-      variant: "primary",
-      backgroundColor: "#16a34a",
-      textColor: "#ffffff",
-      fontSize: 15,
-      borderRadius: 10,
-      width: "max-content",
-      height: "max-content",
-      padding: { top: "10", right: "20", bottom: "10", left: "20" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
+  "navBrand01": {
+    "type": {
+      "resolvedName": "Header"
     },
-    displayName: "Button",
-    custom: {},
-    parent: "navBar0001",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
-  },
-
-  // ===================== HERO =====================
-  hero000001: {
-    type: { resolvedName: "Container" },
-    isCanvas: true,
-    props: {
-      background: "#ffffff",
-      padding: { top: "72", right: "24", bottom: "72", left: "24" },
-      margin: { top: "0", right: "auto", bottom: "0", left: "auto" },
-      borderRadius: 0,
-      display: "grid",
-      flexDirection: "row",
-      justifyContent: "flex-start",
-      alignItems: "center",
-      gap: "48",
-      width: "1024",
-      height: "max-content",
-      gridTemplateColumns: "1.1fr 1fr",
-      gridTemplateRows: "",
+    "isCanvas": false,
+    "props": {
+      "text": "Campaignr",
+      "level": "h1",
+      "align": "left",
+      "textColor": "#16a34a",
+      "fontSize": 22,
+      "lineHeight": 1.2,
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      }
     },
-    displayName: "Container",
-    custom: {},
-    parent: "ROOT",
-    hidden: false,
-    nodes: ["heroLeft01", "heroRight1"],
-    linkedNodes: {},
+    "displayName": "Header",
+    "custom": {},
+    "parent": "navBar0001",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
   },
-  heroLeft01: {
-    type: { resolvedName: "Container" },
-    isCanvas: true,
-    props: {
-      background: "transparent",
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
-      borderRadius: 0,
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "flex-start",
-      gap: "20",
-      width: "auto",
-      height: "max-content",
-      gridTemplateColumns: "",
-      gridTemplateRows: "",
+  "navCta0001": {
+    "type": {
+      "resolvedName": "CtaButton"
     },
-    displayName: "Container",
-    custom: {},
-    parent: "hero000001",
-    hidden: false,
-    nodes: ["heroEyb001", "heroHead01", "heroSub001", "heroBtns01"],
-    linkedNodes: {},
-  },
-  heroEyb001: {
-    type: { resolvedName: "TextBlock" },
-    isCanvas: false,
-    props: {
-      text: "THE NO-CODE LANDING PAGE BUILDER",
-      align: "left",
-      textColor: "#16a34a",
-      fontSize: 13,
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
+    "isCanvas": false,
+    "props": {
+      "label": "Start free",
+      "href": "#",
+      "variant": "primary",
+      "backgroundColor": "#16a34a",
+      "textColor": "#ffffff",
+      "fontSize": 15,
+      "fontSizeResponsive": {},
+      "borderRadius": 10,
+      "width": "max-content",
+      "height": "max-content",
+      "padding": {
+        "top": "10",
+        "right": "20",
+        "bottom": "10",
+        "left": "20"
+      },
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      }
     },
-    displayName: "Text",
-    custom: {},
-    parent: "heroLeft01",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
+    "displayName": "Button",
+    "custom": {},
+    "parent": "navBar0001",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
   },
-  heroHead01: {
-    type: { resolvedName: "Header" },
-    isCanvas: false,
-    props: {
-      text: "Launch landing pages that turn clicks into customers.",
-      level: "h1",
-      align: "left",
-      textColor: "#0f1a14",
-      fontSize: 52,
-      lineHeight: 1.2,
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
+  "hero000001": {
+    "type": {
+      "resolvedName": "Container"
     },
-    displayName: "Header",
-    custom: {},
-    parent: "heroLeft01",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
-  },
-  heroSub001: {
-    type: { resolvedName: "TextBlock" },
-    isCanvas: false,
-    props: {
-      text: "Design, publish, and optimize high-converting pages in minutes. No developer, no template lock-in, no code.",
-      align: "left",
-      textColor: "#6b7280",
-      fontSize: 18,
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
+    "isCanvas": true,
+    "props": {
+      "background": "#ffffff",
+      "padding": {
+        "top": "72",
+        "right": "24",
+        "bottom": "72",
+        "left": "24"
+      },
+      "paddingResponsive": {
+        "tablet": {
+          "top": "24",
+          "right": "24",
+          "bottom": "24",
+          "left": "24"
+        }
+      },
+      "margin": {
+        "top": "0",
+        "right": "auto",
+        "bottom": "0",
+        "left": "auto"
+      },
+      "marginResponsive": {},
+      "borderRadius": 0,
+      "border": "",
+      "display": "grid",
+      "flexDirection": "row",
+      "flexDirectionResponsive": {},
+      "justifyContent": "flex-start",
+      "alignItems": "center",
+      "gap": "48",
+      "width": "100%",
+      "height": "max-content",
+      "maxWidth": "1024",
+      "columns": 3,
+      "columnsResponsive": {
+        "tablet": 1
+      },
+      "gridTemplateColumns": "1.1fr 1fr",
+      "gridTemplateColumnsResponsive": {},
+      "gridTemplateRows": ""
     },
-    displayName: "Text",
-    custom: {},
-    parent: "heroLeft01",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
+    "displayName": "Container",
+    "custom": {},
+    "parent": "ROOT",
+    "hidden": false,
+    "nodes": [
+      "heroLeft01",
+      "heroRight1"
+    ],
+    "linkedNodes": {}
   },
-  heroBtns01: {
-    type: { resolvedName: "Container" },
-    isCanvas: true,
-    props: {
-      background: "transparent",
-      padding: { top: "8", right: "0", bottom: "0", left: "0" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
-      borderRadius: 0,
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "flex-start",
-      alignItems: "center",
-      gap: "12",
-      width: "auto",
-      height: "max-content",
-      gridTemplateColumns: "",
-      gridTemplateRows: "",
+  "heroLeft01": {
+    "type": {
+      "resolvedName": "Container"
     },
-    displayName: "Container",
-    custom: {},
-    parent: "heroLeft01",
-    hidden: false,
-    nodes: ["heroCtaP01", "heroCtaS01"],
-    linkedNodes: {},
-  },
-  heroCtaP01: {
-    type: { resolvedName: "CtaButton" },
-    isCanvas: false,
-    props: {
-      label: "Start building free",
-      href: "#",
-      variant: "primary",
-      backgroundColor: "#16a34a",
-      textColor: "#ffffff",
-      fontSize: 16,
-      borderRadius: 10,
-      width: "max-content",
-      height: "max-content",
-      padding: { top: "14", right: "26", bottom: "14", left: "26" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
+    "isCanvas": true,
+    "props": {
+      "background": "transparent",
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "paddingResponsive": {},
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "marginResponsive": {},
+      "borderRadius": 0,
+      "border": "",
+      "display": "flex",
+      "flexDirection": "column",
+      "flexDirectionResponsive": {},
+      "justifyContent": "center",
+      "alignItems": "flex-start",
+      "gap": "20",
+      "width": "auto",
+      "height": "max-content",
+      "maxWidth": "",
+      "columns": 3,
+      "columnsResponsive": {},
+      "gridTemplateColumns": "",
+      "gridTemplateColumnsResponsive": {},
+      "gridTemplateRows": ""
     },
-    displayName: "Button",
-    custom: {},
-    parent: "heroBtns01",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
+    "displayName": "Container",
+    "custom": {},
+    "parent": "hero000001",
+    "hidden": false,
+    "nodes": [
+      "heroEyb001",
+      "heroHead01",
+      "heroSub001",
+      "heroBtns01"
+    ],
+    "linkedNodes": {}
   },
-  heroCtaS01: {
-    type: { resolvedName: "CtaButton" },
-    isCanvas: false,
-    props: {
-      label: "Watch the demo",
-      href: "#",
-      variant: "secondary",
-      backgroundColor: "#dcfce7",
-      textColor: "#166534",
-      fontSize: 16,
-      borderRadius: 10,
-      width: "max-content",
-      height: "max-content",
-      padding: { top: "14", right: "26", bottom: "14", left: "26" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
+  "heroEyb001": {
+    "type": {
+      "resolvedName": "TextBlock"
     },
-    displayName: "Button",
-    custom: {},
-    parent: "heroBtns01",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
-  },
-  heroRight1: {
-    type: { resolvedName: "Container" },
-    isCanvas: true,
-    props: {
-      background: "#f6f9f7",
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
-      borderRadius: 16,
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
-      gap: "0",
-      width: "100%",
-      height: "max-content",
-      gridTemplateColumns: "",
-      gridTemplateRows: "",
+    "isCanvas": false,
+    "props": {
+      "text": "THE NO-CODE LANDING PAGE BUILDER",
+      "align": "left",
+      "textColor": "#16a34a",
+      "fontSize": 13,
+      "fontSizeResponsive": {},
+      "lineHeight": 1.6,
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      }
     },
-    displayName: "Container",
-    custom: {},
-    parent: "hero000001",
-    hidden: false,
-    nodes: ["heroImg001"],
-    linkedNodes: {},
+    "displayName": "Text",
+    "custom": {},
+    "parent": "heroLeft01",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
   },
-  heroImg001: {
-    type: { resolvedName: "ImageBlock" },
-    isCanvas: false,
-    props: {
-      src: "https://picsum.photos/seed/campaignr-hero/900/680",
-      alt: "Campaignr editor preview",
-      width: "100%",
-      height: "auto",
+  "heroHead01": {
+    "type": {
+      "resolvedName": "Header"
     },
-    displayName: "Image",
-    custom: {},
-    parent: "heroRight1",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
-  },
-
-  // ===================== LOGO CLOUD =====================
-  logos00001: {
-    type: { resolvedName: "Container" },
-    isCanvas: true,
-    props: {
-      background: "#ffffff",
-      padding: { top: "24", right: "24", bottom: "48", left: "24" },
-      margin: { top: "0", right: "auto", bottom: "0", left: "auto" },
-      borderRadius: 0,
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
-      gap: "24",
-      width: "1024",
-      height: "max-content",
-      gridTemplateColumns: "",
-      gridTemplateRows: "",
+    "isCanvas": false,
+    "props": {
+      "text": "Launch landing pages that turn clicks into customers.",
+      "level": "h1",
+      "align": "left",
+      "textColor": "#0f1a14",
+      "fontSize": 52,
+      "lineHeight": 1.2,
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      }
     },
-    displayName: "Container",
-    custom: {},
-    parent: "ROOT",
-    hidden: false,
-    nodes: ["logosLbl01", "logosRow01"],
-    linkedNodes: {},
+    "displayName": "Header",
+    "custom": {},
+    "parent": "heroLeft01",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
   },
-  logosLbl01: {
-    type: { resolvedName: "TextBlock" },
-    isCanvas: false,
-    props: {
-      text: "Powering campaigns for teams everywhere",
-      align: "center",
-      textColor: "#9ca3af",
-      fontSize: 14,
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
+  "heroSub001": {
+    "type": {
+      "resolvedName": "TextBlock"
     },
-    displayName: "Text",
-    custom: {},
-    parent: "logos00001",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
-  },
-  logosRow01: {
-    type: { resolvedName: "Container" },
-    isCanvas: true,
-    props: {
-      background: "transparent",
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
-      borderRadius: 0,
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "space-between",
-      alignItems: "center",
-      gap: "32",
-      width: "100%",
-      height: "max-content",
-      gridTemplateColumns: "",
-      gridTemplateRows: "",
+    "isCanvas": false,
+    "props": {
+      "text": "Design, publish, and optimize high-converting pages in minutes. No developer, no template lock-in, no code.",
+      "align": "left",
+      "textColor": "#6b7280",
+      "fontSize": 18,
+      "fontSizeResponsive": {},
+      "lineHeight": 1.6,
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      }
     },
-    displayName: "Container",
-    custom: {},
-    parent: "logos00001",
-    hidden: false,
-    nodes: ["logoImg001", "logoImg002", "logoImg003", "logoImg004", "logoImg005"],
-    linkedNodes: {},
+    "displayName": "Text",
+    "custom": {},
+    "parent": "heroLeft01",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
   },
-  logoImg001: {
-    type: { resolvedName: "ImageBlock" },
-    isCanvas: false,
-    props: {
-      src: "https://picsum.photos/seed/logo-1/160/44?grayscale",
-      alt: "Client logo",
-      width: "140",
-      height: "auto",
+  "heroBtns01": {
+    "type": {
+      "resolvedName": "Container"
     },
-    displayName: "Image",
-    custom: {},
-    parent: "logosRow01",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
-  },
-  logoImg002: {
-    type: { resolvedName: "ImageBlock" },
-    isCanvas: false,
-    props: {
-      src: "https://picsum.photos/seed/logo-2/160/44?grayscale",
-      alt: "Client logo",
-      width: "140",
-      height: "auto",
+    "isCanvas": true,
+    "props": {
+      "background": "transparent",
+      "padding": {
+        "top": "8",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "paddingResponsive": {},
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "marginResponsive": {},
+      "borderRadius": 0,
+      "border": "",
+      "display": "flex",
+      "flexDirection": "row",
+      "flexDirectionResponsive": {},
+      "justifyContent": "flex-start",
+      "alignItems": "center",
+      "gap": "12",
+      "width": "auto",
+      "height": "max-content",
+      "maxWidth": "",
+      "columns": 3,
+      "columnsResponsive": {},
+      "gridTemplateColumns": "",
+      "gridTemplateColumnsResponsive": {},
+      "gridTemplateRows": ""
     },
-    displayName: "Image",
-    custom: {},
-    parent: "logosRow01",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
+    "displayName": "Container",
+    "custom": {},
+    "parent": "heroLeft01",
+    "hidden": false,
+    "nodes": [
+      "heroCtaP01",
+      "heroCtaS01"
+    ],
+    "linkedNodes": {}
   },
-  logoImg003: {
-    type: { resolvedName: "ImageBlock" },
-    isCanvas: false,
-    props: {
-      src: "https://picsum.photos/seed/logo-3/160/44?grayscale",
-      alt: "Client logo",
-      width: "140",
-      height: "auto",
+  "heroCtaP01": {
+    "type": {
+      "resolvedName": "CtaButton"
     },
-    displayName: "Image",
-    custom: {},
-    parent: "logosRow01",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
-  },
-  logoImg004: {
-    type: { resolvedName: "ImageBlock" },
-    isCanvas: false,
-    props: {
-      src: "https://picsum.photos/seed/logo-4/160/44?grayscale",
-      alt: "Client logo",
-      width: "140",
-      height: "auto",
+    "isCanvas": false,
+    "props": {
+      "label": "Start building free",
+      "href": "#",
+      "variant": "primary",
+      "backgroundColor": "#16a34a",
+      "textColor": "#ffffff",
+      "fontSize": 16,
+      "fontSizeResponsive": {},
+      "borderRadius": 10,
+      "width": "max-content",
+      "height": "max-content",
+      "padding": {
+        "top": "14",
+        "right": "26",
+        "bottom": "14",
+        "left": "26"
+      },
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      }
     },
-    displayName: "Image",
-    custom: {},
-    parent: "logosRow01",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
+    "displayName": "Button",
+    "custom": {},
+    "parent": "heroBtns01",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
   },
-  logoImg005: {
-    type: { resolvedName: "ImageBlock" },
-    isCanvas: false,
-    props: {
-      src: "https://picsum.photos/seed/logo-5/160/44?grayscale",
-      alt: "Client logo",
-      width: "140",
-      height: "auto",
+  "heroCtaS01": {
+    "type": {
+      "resolvedName": "CtaButton"
     },
-    displayName: "Image",
-    custom: {},
-    parent: "logosRow01",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
-  },
-
-  // ===================== FEATURES =====================
-  feats00001: {
-    type: { resolvedName: "Container" },
-    isCanvas: true,
-    props: {
-      background: "#f6f9f7",
-      padding: { top: "80", right: "24", bottom: "80", left: "24" },
-      margin: { top: "0", right: "auto", bottom: "0", left: "auto" },
-      borderRadius: 0,
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "flex-start",
-      alignItems: "center",
-      gap: "12",
-      width: "100%",
-      height: "max-content",
-      gridTemplateColumns: "",
-      gridTemplateRows: "",
+    "isCanvas": false,
+    "props": {
+      "label": "Watch the demo",
+      "href": "#",
+      "variant": "secondary",
+      "backgroundColor": "#dcfce7",
+      "textColor": "#166534",
+      "fontSize": 16,
+      "fontSizeResponsive": {},
+      "borderRadius": 10,
+      "width": "max-content",
+      "height": "max-content",
+      "padding": {
+        "top": "14",
+        "right": "26",
+        "bottom": "14",
+        "left": "26"
+      },
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      }
     },
-    displayName: "Container",
-    custom: {},
-    parent: "ROOT",
-    hidden: false,
-    nodes: ["featsInr01"],
-    linkedNodes: {},
+    "displayName": "Button",
+    "custom": {},
+    "parent": "heroBtns01",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
   },
-  featsInr01: {
-    type: { resolvedName: "Container" },
-    isCanvas: true,
-    props: {
-      background: "transparent",
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
-      margin: { top: "0", right: "auto", bottom: "0", left: "auto" },
-      borderRadius: 0,
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "flex-start",
-      alignItems: "center",
-      gap: "40",
-      width: "1024",
-      height: "max-content",
-      gridTemplateColumns: "",
-      gridTemplateRows: "",
+  "heroRight1": {
+    "type": {
+      "resolvedName": "Container"
     },
-    displayName: "Container",
-    custom: {},
-    parent: "feats00001",
-    hidden: false,
-    nodes: ["featsHead1", "featsSub01", "featsGrid1"],
-    linkedNodes: {},
-  },
-  featsHead1: {
-    type: { resolvedName: "Header" },
-    isCanvas: false,
-    props: {
-      text: "Everything you need to ship a campaign",
-      level: "h2",
-      align: "center",
-      textColor: "#0f1a14",
-      fontSize: 36,
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
+    "isCanvas": true,
+    "props": {
+      "background": "#f6f9f7",
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "paddingResponsive": {},
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "marginResponsive": {},
+      "borderRadius": 16,
+      "border": "",
+      "display": "flex",
+      "flexDirection": "column",
+      "flexDirectionResponsive": {},
+      "justifyContent": "center",
+      "alignItems": "center",
+      "gap": "0",
+      "width": "100%",
+      "height": "max-content",
+      "maxWidth": "",
+      "columns": 3,
+      "columnsResponsive": {},
+      "gridTemplateColumns": "",
+      "gridTemplateColumnsResponsive": {},
+      "gridTemplateRows": ""
     },
-    displayName: "Header",
-    custom: {},
-    parent: "featsInr01",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
+    "displayName": "Container",
+    "custom": {},
+    "parent": "hero000001",
+    "hidden": false,
+    "nodes": [
+      "heroImg001"
+    ],
+    "linkedNodes": {}
   },
-  featsSub01: {
-    type: { resolvedName: "TextBlock" },
-    isCanvas: false,
-    props: {
-      text: "From first draft to published page, Campaignr handles the whole workflow so you can focus on the offer.",
-      align: "center",
-      textColor: "#6b7280",
-      fontSize: 17,
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
-      margin: { top: "-24", right: "0", bottom: "0", left: "0" },
+  "heroImg001": {
+    "type": {
+      "resolvedName": "ImageBlock"
     },
-    displayName: "Text",
-    custom: {},
-    parent: "featsInr01",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
-  },
-  featsGrid1: {
-    type: { resolvedName: "Container" },
-    isCanvas: true,
-    props: {
-      background: "transparent",
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
-      borderRadius: 0,
-      display: "grid",
-      flexDirection: "row",
-      justifyContent: "flex-start",
-      alignItems: "stretch",
-      gap: "24",
-      width: "100%",
-      height: "max-content",
-      gridTemplateColumns: "1fr 1fr 1fr",
-      gridTemplateRows: "",
+    "isCanvas": false,
+    "props": {
+      "src": "https://picsum.photos/seed/campaignr-hero/900/680",
+      "alt": "Campaignr editor preview",
+      "width": "100%",
+      "height": "auto"
     },
-    displayName: "Container",
-    custom: {},
-    parent: "featsInr01",
-    hidden: false,
-    nodes: ["featCard01", "featCard02", "featCard03"],
-    linkedNodes: {},
+    "displayName": "Image",
+    "custom": {},
+    "parent": "heroRight1",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
   },
-
-  featCard01: {
-    type: { resolvedName: "Container" },
-    isCanvas: true,
-    props: {
-      background: "#ffffff",
-      padding: { top: "28", right: "28", bottom: "28", left: "28" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
-      borderRadius: 16,
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "flex-start",
-      alignItems: "flex-start",
-      gap: "14",
-      width: "100%",
-      height: "auto",
-      gridTemplateColumns: "",
-      gridTemplateRows: "",
-      border: "1px solid #e8ede9",
+  "logos00001": {
+    "type": {
+      "resolvedName": "Container"
     },
-    displayName: "Container",
-    custom: {},
-    parent: "featsGrid1",
-    hidden: false,
-    nodes: ["fc1Chip001", "fc1Head001", "fc1Text001"],
-    linkedNodes: {},
-  },
-  fc1Chip001: {
-    type: { resolvedName: "Container" },
-    isCanvas: true,
-    props: {
-      background: "#dcfce7",
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
-      borderRadius: 12,
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "center",
-      alignItems: "center",
-      gap: "0",
-      width: "48",
-      height: "48",
-      gridTemplateColumns: "",
-      gridTemplateRows: "",
+    "isCanvas": true,
+    "props": {
+      "background": "#ffffff",
+      "padding": {
+        "top": "24",
+        "right": "24",
+        "bottom": "48",
+        "left": "24"
+      },
+      "paddingResponsive": {},
+      "margin": {
+        "top": "0",
+        "right": "auto",
+        "bottom": "0",
+        "left": "auto"
+      },
+      "marginResponsive": {},
+      "borderRadius": 0,
+      "border": "",
+      "display": "flex",
+      "flexDirection": "column",
+      "flexDirectionResponsive": {},
+      "justifyContent": "center",
+      "alignItems": "center",
+      "gap": "24",
+      "width": "100%",
+      "height": "max-content",
+      "maxWidth": "1024",
+      "columns": 3,
+      "columnsResponsive": {},
+      "gridTemplateColumns": "",
+      "gridTemplateColumnsResponsive": {},
+      "gridTemplateRows": ""
     },
-    displayName: "Container",
-    custom: {},
-    parent: "featCard01",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
+    "displayName": "Container",
+    "custom": {},
+    "parent": "ROOT",
+    "hidden": false,
+    "nodes": [
+      "logosLbl01",
+      "logosRow01"
+    ],
+    "linkedNodes": {}
   },
-  fc1Head001: {
-    type: { resolvedName: "Header" },
-    isCanvas: false,
-    props: {
-      text: "Drag-and-drop editor",
-      level: "h3",
-      align: "left",
-      textColor: "#0f1a14",
-      fontSize: 20,
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
+  "logosLbl01": {
+    "type": {
+      "resolvedName": "TextBlock"
     },
-    displayName: "Header",
-    custom: {},
-    parent: "featCard01",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
-  },
-  fc1Text001: {
-    type: { resolvedName: "TextBlock" },
-    isCanvas: false,
-    props: {
-      text: "Assemble responsive pages from flexible blocks. What you build is exactly what you ship.",
-      align: "left",
-      textColor: "#6b7280",
-      fontSize: 15,
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
+    "isCanvas": false,
+    "props": {
+      "text": "Powering campaigns for teams everywhere",
+      "align": "center",
+      "textColor": "#9ca3af",
+      "fontSize": 14,
+      "fontSizeResponsive": {},
+      "lineHeight": 1.6,
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      }
     },
-    displayName: "Text",
-    custom: {},
-    parent: "featCard01",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
+    "displayName": "Text",
+    "custom": {},
+    "parent": "logos00001",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
   },
-
-  featCard02: {
-    type: { resolvedName: "Container" },
-    isCanvas: true,
-    props: {
-      background: "#ffffff",
-      padding: { top: "28", right: "28", bottom: "28", left: "28" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
-      borderRadius: 16,
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "flex-start",
-      alignItems: "flex-start",
-      gap: "14",
-      width: "100%",
-      height: "auto",
-      gridTemplateColumns: "",
-      gridTemplateRows: "",
-      border: "1px solid #e8ede9",
+  "logosRow01": {
+    "type": {
+      "resolvedName": "Container"
     },
-    displayName: "Container",
-    custom: {},
-    parent: "featsGrid1",
-    hidden: false,
-    nodes: ["fc2Chip001", "fc2Head001", "fc2Text001"],
-    linkedNodes: {},
-  },
-  fc2Chip001: {
-    type: { resolvedName: "Container" },
-    isCanvas: true,
-    props: {
-      background: "#dcfce7",
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
-      borderRadius: 12,
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "center",
-      alignItems: "center",
-      gap: "0",
-      width: "48",
-      height: "48",
-      gridTemplateColumns: "",
-      gridTemplateRows: "",
+    "isCanvas": true,
+    "props": {
+      "background": "transparent",
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "paddingResponsive": {},
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "marginResponsive": {},
+      "borderRadius": 0,
+      "border": "",
+      "display": "flex",
+      "flexDirection": "row",
+      "flexDirectionResponsive": {
+        "tablet": "column"
+      },
+      "justifyContent": "space-between",
+      "alignItems": "center",
+      "gap": "12",
+      "width": "100%",
+      "height": "max-content",
+      "maxWidth": "1024",
+      "columns": 3,
+      "columnsResponsive": {
+        "tablet": 5
+      },
+      "gridTemplateColumns": "",
+      "gridTemplateColumnsResponsive": {},
+      "gridTemplateRows": ""
     },
-    displayName: "Container",
-    custom: {},
-    parent: "featCard02",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
+    "displayName": "Container",
+    "custom": {},
+    "parent": "logos00001",
+    "hidden": false,
+    "nodes": [
+      "logoImg001",
+      "logoImg002",
+      "logoImg003",
+      "logoImg004",
+      "logoImg005"
+    ],
+    "linkedNodes": {}
   },
-  fc2Head001: {
-    type: { resolvedName: "Header" },
-    isCanvas: false,
-    props: {
-      text: "Publish in one click",
-      level: "h3",
-      align: "left",
-      textColor: "#0f1a14",
-      fontSize: 20,
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
+  "logoImg001": {
+    "type": {
+      "resolvedName": "ImageBlock"
     },
-    displayName: "Header",
-    custom: {},
-    parent: "featCard02",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
-  },
-  fc2Text001: {
-    type: { resolvedName: "TextBlock" },
-    isCanvas: false,
-    props: {
-      text: "Go live on your own domain instantly, with fast, SEO-ready pages out of the box.",
-      align: "left",
-      textColor: "#6b7280",
-      fontSize: 15,
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
+    "isCanvas": false,
+    "props": {
+      "src": "https://picsum.photos/seed/logo-1/160/44?grayscale",
+      "alt": "Client logo",
+      "width": "140",
+      "height": "auto"
     },
-    displayName: "Text",
-    custom: {},
-    parent: "featCard02",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
+    "displayName": "Image",
+    "custom": {},
+    "parent": "logosRow01",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
   },
-
-  featCard03: {
-    type: { resolvedName: "Container" },
-    isCanvas: true,
-    props: {
-      background: "#ffffff",
-      padding: { top: "28", right: "28", bottom: "28", left: "28" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
-      borderRadius: 16,
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "flex-start",
-      alignItems: "flex-start",
-      gap: "14",
-      width: "100%",
-      height: "auto",
-      gridTemplateColumns: "",
-      gridTemplateRows: "",
-      border: "1px solid #e8ede9",
+  "logoImg002": {
+    "type": {
+      "resolvedName": "ImageBlock"
     },
-    displayName: "Container",
-    custom: {},
-    parent: "featsGrid1",
-    hidden: false,
-    nodes: ["fc3Chip001", "fc3Head001", "fc3Text001"],
-    linkedNodes: {},
-  },
-  fc3Chip001: {
-    type: { resolvedName: "Container" },
-    isCanvas: true,
-    props: {
-      background: "#dcfce7",
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
-      borderRadius: 12,
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "center",
-      alignItems: "center",
-      gap: "0",
-      width: "48",
-      height: "48",
-      gridTemplateColumns: "",
-      gridTemplateRows: "",
+    "isCanvas": false,
+    "props": {
+      "src": "https://picsum.photos/seed/logo-2/160/44?grayscale",
+      "alt": "Client logo",
+      "width": "140",
+      "height": "auto"
     },
-    displayName: "Container",
-    custom: {},
-    parent: "featCard03",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
+    "displayName": "Image",
+    "custom": {},
+    "parent": "logosRow01",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
   },
-  fc3Head001: {
-    type: { resolvedName: "Header" },
-    isCanvas: false,
-    props: {
-      text: "Built-in analytics",
-      level: "h3",
-      align: "left",
-      textColor: "#0f1a14",
-      fontSize: 20,
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
+  "logoImg003": {
+    "type": {
+      "resolvedName": "ImageBlock"
     },
-    displayName: "Header",
-    custom: {},
-    parent: "featCard03",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
-  },
-  fc3Text001: {
-    type: { resolvedName: "TextBlock" },
-    isCanvas: false,
-    props: {
-      text: "See what converts with real-time visitor and conversion tracking on every page you publish.",
-      align: "left",
-      textColor: "#6b7280",
-      fontSize: 15,
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
+    "isCanvas": false,
+    "props": {
+      "src": "https://picsum.photos/seed/logo-3/160/44?grayscale",
+      "alt": "Client logo",
+      "width": "140",
+      "height": "auto"
     },
-    displayName: "Text",
-    custom: {},
-    parent: "featCard03",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
+    "displayName": "Image",
+    "custom": {},
+    "parent": "logosRow01",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
   },
-
-  // ===================== DARK HIGHLIGHT =====================
-  dark000001: {
-    type: { resolvedName: "Container" },
-    isCanvas: true,
-    props: {
-      background: "#0c1411",
-      padding: { top: "80", right: "24", bottom: "80", left: "24" },
-      margin: { top: "0", right: "auto", bottom: "0", left: "auto" },
-      borderRadius: 0,
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
-      gap: "0",
-      width: "100%",
-      height: "max-content",
-      gridTemplateColumns: "",
-      gridTemplateRows: "",
+  "logoImg004": {
+    "type": {
+      "resolvedName": "ImageBlock"
     },
-    displayName: "Container",
-    custom: {},
-    parent: "ROOT",
-    hidden: false,
-    nodes: ["darkInner1"],
-    linkedNodes: {},
-  },
-  darkInner1: {
-    type: { resolvedName: "Container" },
-    isCanvas: true,
-    props: {
-      background: "transparent",
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
-      margin: { top: "0", right: "auto", bottom: "0", left: "auto" },
-      borderRadius: 0,
-      display: "grid",
-      flexDirection: "row",
-      justifyContent: "flex-start",
-      alignItems: "center",
-      gap: "48",
-      width: "1024",
-      height: "max-content",
-      gridTemplateColumns: "1fr 1fr",
-      gridTemplateRows: "",
+    "isCanvas": false,
+    "props": {
+      "src": "https://picsum.photos/seed/logo-4/160/44?grayscale",
+      "alt": "Client logo",
+      "width": "140",
+      "height": "auto"
     },
-    displayName: "Container",
-    custom: {},
-    parent: "dark000001",
-    hidden: false,
-    nodes: ["darkImg001", "darkCopy01"],
-    linkedNodes: {},
+    "displayName": "Image",
+    "custom": {},
+    "parent": "logosRow01",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
   },
-  darkImg001: {
-    type: { resolvedName: "ImageBlock" },
-    isCanvas: false,
-    props: {
-      src: "https://picsum.photos/seed/campaignr-analytics/1000/720",
-      alt: "Campaignr analytics dashboard",
-      width: "100%",
-      height: "auto",
+  "logoImg005": {
+    "type": {
+      "resolvedName": "ImageBlock"
     },
-    displayName: "Image",
-    custom: {},
-    parent: "darkInner1",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
-  },
-  darkCopy01: {
-    type: { resolvedName: "Container" },
-    isCanvas: true,
-    props: {
-      background: "transparent",
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
-      borderRadius: 0,
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "flex-start",
-      gap: "18",
-      width: "auto",
-      height: "max-content",
-      gridTemplateColumns: "",
-      gridTemplateRows: "",
+    "isCanvas": false,
+    "props": {
+      "src": "https://picsum.photos/seed/logo-5/160/44?grayscale",
+      "alt": "Client logo",
+      "width": "140",
+      "height": "auto"
     },
-    displayName: "Container",
-    custom: {},
-    parent: "darkInner1",
-    hidden: false,
-    nodes: ["darkEyb001", "darkHead01", "darkText01", "darkCta001"],
-    linkedNodes: {},
+    "displayName": "Image",
+    "custom": {},
+    "parent": "logosRow01",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
   },
-  darkEyb001: {
-    type: { resolvedName: "TextBlock" },
-    isCanvas: false,
-    props: {
-      text: "BUILT FOR CONVERSION",
-      align: "left",
-      textColor: "#4ade80",
-      fontSize: 13,
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
+  "feats00001": {
+    "type": {
+      "resolvedName": "Container"
     },
-    displayName: "Text",
-    custom: {},
-    parent: "darkCopy01",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
-  },
-  darkHead01: {
-    type: { resolvedName: "Header" },
-    isCanvas: false,
-    props: {
-      text: "Test, tweak, and watch your numbers climb",
-      level: "h2",
-      align: "left",
-      textColor: "#ffffff",
-      fontSize: 34,
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
+    "isCanvas": true,
+    "props": {
+      "background": "#f6f9f7",
+      "padding": {
+        "top": "80",
+        "right": "24",
+        "bottom": "80",
+        "left": "24"
+      },
+      "paddingResponsive": {
+        "tablet": {
+          "top": "80",
+          "right": "24",
+          "bottom": "80",
+          "left": "24"
+        }
+      },
+      "margin": {
+        "top": "0",
+        "right": "auto",
+        "bottom": "0",
+        "left": "auto"
+      },
+      "marginResponsive": {},
+      "borderRadius": 0,
+      "border": "",
+      "display": "flex",
+      "flexDirection": "column",
+      "flexDirectionResponsive": {},
+      "justifyContent": "flex-start",
+      "alignItems": "center",
+      "gap": "12",
+      "width": "100%",
+      "height": "max-content",
+      "maxWidth": "",
+      "columns": 3,
+      "columnsResponsive": {},
+      "gridTemplateColumns": "",
+      "gridTemplateColumnsResponsive": {},
+      "gridTemplateRows": ""
     },
-    displayName: "Header",
-    custom: {},
-    parent: "darkCopy01",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
+    "displayName": "Container",
+    "custom": {},
+    "parent": "ROOT",
+    "hidden": false,
+    "nodes": [
+      "featsInr01"
+    ],
+    "linkedNodes": {}
   },
-  darkText01: {
-    type: { resolvedName: "TextBlock" },
-    isCanvas: false,
-    props: {
-      text: "Swap headlines, run variants, and capture leads with forms that sync straight to your stack. Every change is measurable, so you always know what's working.",
-      align: "left",
-      textColor: "#9ca3af",
-      fontSize: 16,
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
+  "featsInr01": {
+    "type": {
+      "resolvedName": "Container"
     },
-    displayName: "Text",
-    custom: {},
-    parent: "darkCopy01",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
-  },
-  darkCta001: {
-    type: { resolvedName: "CtaButton" },
-    isCanvas: false,
-    props: {
-      label: "Explore the editor",
-      href: "#",
-      variant: "primary",
-      backgroundColor: "#16a34a",
-      textColor: "#ffffff",
-      fontSize: 16,
-      borderRadius: 10,
-      width: "max-content",
-      height: "max-content",
-      padding: { top: "13", right: "24", bottom: "13", left: "24" },
-      margin: { top: "6", right: "0", bottom: "0", left: "0" },
+    "isCanvas": true,
+    "props": {
+      "background": "transparent",
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "paddingResponsive": {},
+      "margin": {
+        "top": "0",
+        "right": "auto",
+        "bottom": "0",
+        "left": "auto"
+      },
+      "marginResponsive": {},
+      "borderRadius": 0,
+      "border": "",
+      "display": "flex",
+      "flexDirection": "column",
+      "flexDirectionResponsive": {},
+      "justifyContent": "flex-start",
+      "alignItems": "center",
+      "gap": "40",
+      "width": "100%",
+      "height": "max-content",
+      "maxWidth": "1024",
+      "columns": 3,
+      "columnsResponsive": {},
+      "gridTemplateColumns": "",
+      "gridTemplateColumnsResponsive": {},
+      "gridTemplateRows": ""
     },
-    displayName: "Button",
-    custom: {},
-    parent: "darkCopy01",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
+    "displayName": "Container",
+    "custom": {},
+    "parent": "feats00001",
+    "hidden": false,
+    "nodes": [
+      "featsHead1",
+      "featsSub01",
+      "featsGrid1"
+    ],
+    "linkedNodes": {}
   },
-
-  // ===================== DEMO / VIDEO =====================
-  demo000001: {
-    type: { resolvedName: "Container" },
-    isCanvas: true,
-    props: {
-      background: "#ffffff",
-      padding: { top: "80", right: "24", bottom: "80", left: "24" },
-      margin: { top: "0", right: "auto", bottom: "0", left: "auto" },
-      borderRadius: 0,
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "flex-start",
-      alignItems: "center",
-      gap: "40",
-      width: "1024",
-      height: "max-content",
-      gridTemplateColumns: "",
-      gridTemplateRows: "",
+  "featsHead1": {
+    "type": {
+      "resolvedName": "Header"
     },
-    displayName: "Container",
-    custom: {},
-    parent: "ROOT",
-    hidden: false,
-    nodes: ["demoHead01", "demoInner1"],
-    linkedNodes: {},
-  },
-  demoHead01: {
-    type: { resolvedName: "Header" },
-    isCanvas: false,
-    props: {
-      text: "See Campaignr in action",
-      level: "h2",
-      align: "center",
-      textColor: "#0f1a14",
-      fontSize: 36,
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
+    "isCanvas": false,
+    "props": {
+      "text": "Everything you need to ship a campaign",
+      "level": "h2",
+      "align": "center",
+      "textColor": "#0f1a14",
+      "fontSize": 36,
+      "lineHeight": 1.2,
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      }
     },
-    displayName: "Header",
-    custom: {},
-    parent: "demo000001",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
+    "displayName": "Header",
+    "custom": {},
+    "parent": "featsInr01",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
   },
-  demoInner1: {
-    type: { resolvedName: "Container" },
-    isCanvas: true,
-    props: {
-      background: "transparent",
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
-      borderRadius: 0,
-      display: "grid",
-      flexDirection: "row",
-      justifyContent: "flex-start",
-      alignItems: "center",
-      gap: "40",
-      width: "100%",
-      height: "max-content",
-      gridTemplateColumns: "1fr 1.4fr",
-      gridTemplateRows: "",
+  "featsSub01": {
+    "type": {
+      "resolvedName": "TextBlock"
     },
-    displayName: "Container",
-    custom: {},
-    parent: "demo000001",
-    hidden: false,
-    nodes: ["demoCopy01", "demoVid001"],
-    linkedNodes: {},
-  },
-  demoCopy01: {
-    type: { resolvedName: "Container" },
-    isCanvas: true,
-    props: {
-      background: "transparent",
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
-      borderRadius: 0,
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "flex-start",
-      gap: "20",
-      width: "auto",
-      height: "max-content",
-      gridTemplateColumns: "",
-      gridTemplateRows: "",
+    "isCanvas": false,
+    "props": {
+      "text": "From first draft to published page, Campaignr handles the whole workflow so you can focus on the offer.",
+      "align": "center",
+      "textColor": "#6b7280",
+      "fontSize": 17,
+      "fontSizeResponsive": {},
+      "lineHeight": 1.6,
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "margin": {
+        "top": "-24",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      }
     },
-    displayName: "Container",
-    custom: {},
-    parent: "demoInner1",
-    hidden: false,
-    nodes: ["demoText01", "demoCta001"],
-    linkedNodes: {},
+    "displayName": "Text",
+    "custom": {},
+    "parent": "featsInr01",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
   },
-  demoText01: {
-    type: { resolvedName: "TextBlock" },
-    isCanvas: false,
-    props: {
-      text: "Watch a full campaign page come together, from blank canvas to published, in under three minutes. No plugins, no hand-off, no waiting on engineering.",
-      align: "left",
-      textColor: "#6b7280",
-      fontSize: 17,
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
+  "featsGrid1": {
+    "type": {
+      "resolvedName": "Container"
     },
-    displayName: "Text",
-    custom: {},
-    parent: "demoCopy01",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
-  },
-  demoCta001: {
-    type: { resolvedName: "CtaButton" },
-    isCanvas: false,
-    props: {
-      label: "Book a walkthrough",
-      href: "#",
-      variant: "secondary",
-      backgroundColor: "#dcfce7",
-      textColor: "#166534",
-      fontSize: 16,
-      borderRadius: 10,
-      width: "max-content",
-      height: "max-content",
-      padding: { top: "13", right: "24", bottom: "13", left: "24" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
+    "isCanvas": true,
+    "props": {
+      "background": "transparent",
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "paddingResponsive": {},
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "marginResponsive": {},
+      "borderRadius": 0,
+      "border": "",
+      "display": "grid",
+      "flexDirection": "row",
+      "flexDirectionResponsive": {},
+      "justifyContent": "flex-start",
+      "alignItems": "stretch",
+      "gap": "24",
+      "width": "100%",
+      "height": "max-content",
+      "maxWidth": "",
+      "columns": 3,
+      "columnsResponsive": {},
+      "gridTemplateColumns": "1fr 1fr 1fr",
+      "gridTemplateColumnsResponsive": {},
+      "gridTemplateRows": ""
     },
-    displayName: "Button",
-    custom: {},
-    parent: "demoCopy01",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
+    "displayName": "Container",
+    "custom": {},
+    "parent": "featsInr01",
+    "hidden": false,
+    "nodes": [
+      "featCard01",
+      "featCard02",
+      "featCard03"
+    ],
+    "linkedNodes": {}
   },
-  demoVid001: {
-    type: { resolvedName: "Video" },
-    isCanvas: false,
-    props: { videoId: "u31qwQUeGuM", aspectRatio: "16:9" },
-    displayName: "Video",
-    custom: {},
-    parent: "demoInner1",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
-  },
-
-  // ===================== FINAL CTA BAND =====================
-  ctaBand001: {
-    type: { resolvedName: "Container" },
-    isCanvas: true,
-    props: {
-      background: "#16a34a",
-      padding: { top: "80", right: "24", bottom: "80", left: "24" },
-      margin: { top: "0", right: "auto", bottom: "0", left: "auto" },
-      borderRadius: 0,
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
-      gap: "0",
-      width: "100%",
-      height: "max-content",
-      gridTemplateColumns: "",
-      gridTemplateRows: "",
+  "featCard01": {
+    "type": {
+      "resolvedName": "Container"
     },
-    displayName: "Container",
-    custom: {},
-    parent: "ROOT",
-    hidden: false,
-    nodes: ["ctaBandInr"],
-    linkedNodes: {},
-  },
-  ctaBandInr: {
-    type: { resolvedName: "Container" },
-    isCanvas: true,
-    props: {
-      background: "transparent",
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
-      margin: { top: "0", right: "auto", bottom: "0", left: "auto" },
-      borderRadius: 0,
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
-      gap: "18",
-      width: "760",
-      height: "max-content",
-      gridTemplateColumns: "",
-      gridTemplateRows: "",
+    "isCanvas": true,
+    "props": {
+      "background": "#ffffff",
+      "padding": {
+        "top": "28",
+        "right": "28",
+        "bottom": "28",
+        "left": "28"
+      },
+      "paddingResponsive": {},
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "marginResponsive": {},
+      "borderRadius": 16,
+      "border": "1px solid #e8ede9",
+      "display": "flex",
+      "flexDirection": "column",
+      "flexDirectionResponsive": {},
+      "justifyContent": "flex-start",
+      "alignItems": "flex-start",
+      "gap": "14",
+      "width": "100%",
+      "height": "auto",
+      "maxWidth": "",
+      "columns": 3,
+      "columnsResponsive": {},
+      "gridTemplateColumns": "",
+      "gridTemplateColumnsResponsive": {},
+      "gridTemplateRows": ""
     },
-    displayName: "Container",
-    custom: {},
-    parent: "ctaBand001",
-    hidden: false,
-    nodes: ["ctaBandHd1", "ctaBandSb1", "ctaBandBt1"],
-    linkedNodes: {},
+    "displayName": "Container",
+    "custom": {},
+    "parent": "featsGrid1",
+    "hidden": false,
+    "nodes": [
+      "fc1Chip001",
+      "fc1Head001",
+      "fc1Text001"
+    ],
+    "linkedNodes": {}
   },
-  ctaBandHd1: {
-    type: { resolvedName: "Header" },
-    isCanvas: false,
-    props: {
-      text: "Ready to launch your next campaign?",
-      level: "h2",
-      align: "center",
-      textColor: "#ffffff",
-      fontSize: 38,
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
+  "fc1Chip001": {
+    "type": {
+      "resolvedName": "Container"
     },
-    displayName: "Header",
-    custom: {},
-    parent: "ctaBandInr",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
-  },
-  ctaBandSb1: {
-    type: { resolvedName: "TextBlock" },
-    isCanvas: false,
-    props: {
-      text: "Join the marketers building faster with Campaignr. Free to start, no card required.",
-      align: "center",
-      textColor: "#dcfce7",
-      fontSize: 17,
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
+    "isCanvas": true,
+    "props": {
+      "background": "#dcfce7",
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "paddingResponsive": {},
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "marginResponsive": {},
+      "borderRadius": 12,
+      "border": "",
+      "display": "flex",
+      "flexDirection": "row",
+      "flexDirectionResponsive": {},
+      "justifyContent": "center",
+      "alignItems": "center",
+      "gap": "0",
+      "width": "48",
+      "height": "48",
+      "maxWidth": "",
+      "columns": 3,
+      "columnsResponsive": {},
+      "gridTemplateColumns": "",
+      "gridTemplateColumnsResponsive": {},
+      "gridTemplateRows": ""
     },
-    displayName: "Text",
-    custom: {},
-    parent: "ctaBandInr",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
+    "displayName": "Container",
+    "custom": {},
+    "parent": "featCard01",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
   },
-  ctaBandBt1: {
-    type: { resolvedName: "CtaButton" },
-    isCanvas: false,
-    props: {
-      label: "Get started free",
-      href: "#",
-      variant: "primary",
-      backgroundColor: "#ffffff",
-      textColor: "#16a34a",
-      fontSize: 16,
-      borderRadius: 10,
-      width: "max-content",
-      height: "max-content",
-      padding: { top: "14", right: "28", bottom: "14", left: "28" },
-      margin: { top: "8", right: "0", bottom: "0", left: "0" },
+  "fc1Head001": {
+    "type": {
+      "resolvedName": "Header"
     },
-    displayName: "Button",
-    custom: {},
-    parent: "ctaBandInr",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
-  },
-
-  // ===================== FOOTER =====================
-  footer0001: {
-    type: { resolvedName: "Container" },
-    isCanvas: true,
-    props: {
-      background: "#0c1411",
-      padding: { top: "36", right: "24", bottom: "36", left: "24" },
-      margin: { top: "0", right: "auto", bottom: "0", left: "auto" },
-      borderRadius: 0,
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
-      gap: "0",
-      width: "100%",
-      height: "max-content",
-      gridTemplateColumns: "",
-      gridTemplateRows: "",
+    "isCanvas": false,
+    "props": {
+      "text": "Drag-and-drop editor",
+      "level": "h3",
+      "align": "left",
+      "textColor": "#0f1a14",
+      "fontSize": 20,
+      "lineHeight": 1.2,
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      }
     },
-    displayName: "Container",
-    custom: {},
-    parent: "ROOT",
-    hidden: false,
-    nodes: ["footInner1"],
-    linkedNodes: {},
+    "displayName": "Header",
+    "custom": {},
+    "parent": "featCard01",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
   },
-  footInner1: {
-    type: { resolvedName: "Container" },
-    isCanvas: true,
-    props: {
-      background: "transparent",
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
-      margin: { top: "0", right: "auto", bottom: "0", left: "auto" },
-      borderRadius: 0,
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "space-between",
-      alignItems: "center",
-      gap: "20",
-      width: "1024",
-      height: "max-content",
-      gridTemplateColumns: "",
-      gridTemplateRows: "",
+  "fc1Text001": {
+    "type": {
+      "resolvedName": "TextBlock"
     },
-    displayName: "Container",
-    custom: {},
-    parent: "footer0001",
-    hidden: false,
-    nodes: ["footBrand1", "footCopy01"],
-    linkedNodes: {},
-  },
-  footBrand1: {
-    type: { resolvedName: "Header" },
-    isCanvas: false,
-    props: {
-      text: "Campaignr",
-      level: "h3",
-      align: "left",
-      textColor: "#4ade80",
-      fontSize: 20,
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
+    "isCanvas": false,
+    "props": {
+      "text": "Assemble responsive pages from flexible blocks. What you build is exactly what you ship.",
+      "align": "left",
+      "textColor": "#6b7280",
+      "fontSize": 15,
+      "fontSizeResponsive": {},
+      "lineHeight": 1.6,
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      }
     },
-    displayName: "Header",
-    custom: {},
-    parent: "footInner1",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
+    "displayName": "Text",
+    "custom": {},
+    "parent": "featCard01",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
   },
-  footCopy01: {
-    type: { resolvedName: "TextBlock" },
-    isCanvas: false,
-    props: {
-      text: "© 2026 Campaignr. All rights reserved.",
-      align: "right",
-      textColor: "#9ca3af",
-      fontSize: 14,
-      padding: { top: "0", right: "0", bottom: "0", left: "0" },
-      margin: { top: "0", right: "0", bottom: "0", left: "0" },
+  "featCard02": {
+    "type": {
+      "resolvedName": "Container"
     },
-    displayName: "Text",
-    custom: {},
-    parent: "footInner1",
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
+    "isCanvas": true,
+    "props": {
+      "background": "#ffffff",
+      "padding": {
+        "top": "28",
+        "right": "28",
+        "bottom": "28",
+        "left": "28"
+      },
+      "paddingResponsive": {},
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "marginResponsive": {},
+      "borderRadius": 16,
+      "border": "1px solid #e8ede9",
+      "display": "flex",
+      "flexDirection": "column",
+      "flexDirectionResponsive": {},
+      "justifyContent": "flex-start",
+      "alignItems": "flex-start",
+      "gap": "14",
+      "width": "100%",
+      "height": "auto",
+      "maxWidth": "",
+      "columns": 3,
+      "columnsResponsive": {},
+      "gridTemplateColumns": "",
+      "gridTemplateColumnsResponsive": {},
+      "gridTemplateRows": ""
+    },
+    "displayName": "Container",
+    "custom": {},
+    "parent": "featsGrid1",
+    "hidden": false,
+    "nodes": [
+      "fc2Chip001",
+      "fc2Head001",
+      "fc2Text001"
+    ],
+    "linkedNodes": {}
   },
+  "fc2Chip001": {
+    "type": {
+      "resolvedName": "Container"
+    },
+    "isCanvas": true,
+    "props": {
+      "background": "#dcfce7",
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "paddingResponsive": {},
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "marginResponsive": {},
+      "borderRadius": 12,
+      "border": "",
+      "display": "flex",
+      "flexDirection": "row",
+      "flexDirectionResponsive": {},
+      "justifyContent": "center",
+      "alignItems": "center",
+      "gap": "0",
+      "width": "48",
+      "height": "48",
+      "maxWidth": "",
+      "columns": 3,
+      "columnsResponsive": {},
+      "gridTemplateColumns": "",
+      "gridTemplateColumnsResponsive": {},
+      "gridTemplateRows": ""
+    },
+    "displayName": "Container",
+    "custom": {},
+    "parent": "featCard02",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
+  },
+  "fc2Head001": {
+    "type": {
+      "resolvedName": "Header"
+    },
+    "isCanvas": false,
+    "props": {
+      "text": "Publish in one click",
+      "level": "h3",
+      "align": "left",
+      "textColor": "#0f1a14",
+      "fontSize": 20,
+      "lineHeight": 1.2,
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      }
+    },
+    "displayName": "Header",
+    "custom": {},
+    "parent": "featCard02",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
+  },
+  "fc2Text001": {
+    "type": {
+      "resolvedName": "TextBlock"
+    },
+    "isCanvas": false,
+    "props": {
+      "text": "Go live on your own domain instantly, with fast, SEO-ready pages out of the box.",
+      "align": "left",
+      "textColor": "#6b7280",
+      "fontSize": 15,
+      "fontSizeResponsive": {},
+      "lineHeight": 1.6,
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      }
+    },
+    "displayName": "Text",
+    "custom": {},
+    "parent": "featCard02",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
+  },
+  "featCard03": {
+    "type": {
+      "resolvedName": "Container"
+    },
+    "isCanvas": true,
+    "props": {
+      "background": "#ffffff",
+      "padding": {
+        "top": "28",
+        "right": "28",
+        "bottom": "28",
+        "left": "28"
+      },
+      "paddingResponsive": {},
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "marginResponsive": {},
+      "borderRadius": 16,
+      "border": "1px solid #e8ede9",
+      "display": "flex",
+      "flexDirection": "column",
+      "flexDirectionResponsive": {},
+      "justifyContent": "flex-start",
+      "alignItems": "flex-start",
+      "gap": "14",
+      "width": "100%",
+      "height": "auto",
+      "maxWidth": "",
+      "columns": 3,
+      "columnsResponsive": {},
+      "gridTemplateColumns": "",
+      "gridTemplateColumnsResponsive": {},
+      "gridTemplateRows": ""
+    },
+    "displayName": "Container",
+    "custom": {},
+    "parent": "featsGrid1",
+    "hidden": false,
+    "nodes": [
+      "fc3Chip001",
+      "fc3Head001",
+      "fc3Text001"
+    ],
+    "linkedNodes": {}
+  },
+  "fc3Chip001": {
+    "type": {
+      "resolvedName": "Container"
+    },
+    "isCanvas": true,
+    "props": {
+      "background": "#dcfce7",
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "paddingResponsive": {},
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "marginResponsive": {},
+      "borderRadius": 12,
+      "border": "",
+      "display": "flex",
+      "flexDirection": "row",
+      "flexDirectionResponsive": {},
+      "justifyContent": "center",
+      "alignItems": "center",
+      "gap": "0",
+      "width": "48",
+      "height": "48",
+      "maxWidth": "",
+      "columns": 3,
+      "columnsResponsive": {},
+      "gridTemplateColumns": "",
+      "gridTemplateColumnsResponsive": {},
+      "gridTemplateRows": ""
+    },
+    "displayName": "Container",
+    "custom": {},
+    "parent": "featCard03",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
+  },
+  "fc3Head001": {
+    "type": {
+      "resolvedName": "Header"
+    },
+    "isCanvas": false,
+    "props": {
+      "text": "Built-in analytics",
+      "level": "h3",
+      "align": "left",
+      "textColor": "#0f1a14",
+      "fontSize": 20,
+      "lineHeight": 1.2,
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      }
+    },
+    "displayName": "Header",
+    "custom": {},
+    "parent": "featCard03",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
+  },
+  "fc3Text001": {
+    "type": {
+      "resolvedName": "TextBlock"
+    },
+    "isCanvas": false,
+    "props": {
+      "text": "See what converts with real-time visitor and conversion tracking on every page you publish.",
+      "align": "left",
+      "textColor": "#6b7280",
+      "fontSize": 15,
+      "fontSizeResponsive": {},
+      "lineHeight": 1.6,
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      }
+    },
+    "displayName": "Text",
+    "custom": {},
+    "parent": "featCard03",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
+  },
+  "dark000001": {
+    "type": {
+      "resolvedName": "Container"
+    },
+    "isCanvas": true,
+    "props": {
+      "background": "#0c1411",
+      "padding": {
+        "top": "80",
+        "right": "24",
+        "bottom": "80",
+        "left": "24"
+      },
+      "paddingResponsive": {},
+      "margin": {
+        "top": "0",
+        "right": "auto",
+        "bottom": "0",
+        "left": "auto"
+      },
+      "marginResponsive": {},
+      "borderRadius": 0,
+      "border": "",
+      "display": "flex",
+      "flexDirection": "column",
+      "flexDirectionResponsive": {},
+      "justifyContent": "center",
+      "alignItems": "center",
+      "gap": "0",
+      "width": "100%",
+      "height": "max-content",
+      "maxWidth": "",
+      "columns": 3,
+      "columnsResponsive": {},
+      "gridTemplateColumns": "",
+      "gridTemplateColumnsResponsive": {},
+      "gridTemplateRows": ""
+    },
+    "displayName": "Container",
+    "custom": {},
+    "parent": "ROOT",
+    "hidden": false,
+    "nodes": [
+      "darkInner1"
+    ],
+    "linkedNodes": {}
+  },
+  "darkInner1": {
+    "type": {
+      "resolvedName": "Container"
+    },
+    "isCanvas": true,
+    "props": {
+      "background": "transparent",
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "paddingResponsive": {},
+      "margin": {
+        "top": "0",
+        "right": "auto",
+        "bottom": "0",
+        "left": "auto"
+      },
+      "marginResponsive": {},
+      "borderRadius": 0,
+      "border": "",
+      "display": "grid",
+      "flexDirection": "row",
+      "flexDirectionResponsive": {},
+      "justifyContent": "flex-start",
+      "alignItems": "center",
+      "gap": "48",
+      "width": "100%",
+      "height": "max-content",
+      "maxWidth": "1024",
+      "columns": 3,
+      "columnsResponsive": {},
+      "gridTemplateColumns": "1fr 1fr",
+      "gridTemplateColumnsResponsive": {},
+      "gridTemplateRows": ""
+    },
+    "displayName": "Container",
+    "custom": {},
+    "parent": "dark000001",
+    "hidden": false,
+    "nodes": [
+      "darkImg001",
+      "darkCopy01"
+    ],
+    "linkedNodes": {}
+  },
+  "darkImg001": {
+    "type": {
+      "resolvedName": "ImageBlock"
+    },
+    "isCanvas": false,
+    "props": {
+      "src": "https://picsum.photos/seed/campaignr-analytics/1000/720",
+      "alt": "Campaignr analytics dashboard",
+      "width": "100%",
+      "height": "auto"
+    },
+    "displayName": "Image",
+    "custom": {},
+    "parent": "darkInner1",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
+  },
+  "darkCopy01": {
+    "type": {
+      "resolvedName": "Container"
+    },
+    "isCanvas": true,
+    "props": {
+      "background": "transparent",
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "paddingResponsive": {},
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "marginResponsive": {},
+      "borderRadius": 0,
+      "border": "",
+      "display": "flex",
+      "flexDirection": "column",
+      "flexDirectionResponsive": {},
+      "justifyContent": "center",
+      "alignItems": "flex-start",
+      "gap": "18",
+      "width": "auto",
+      "height": "max-content",
+      "maxWidth": "",
+      "columns": 3,
+      "columnsResponsive": {},
+      "gridTemplateColumns": "",
+      "gridTemplateColumnsResponsive": {},
+      "gridTemplateRows": ""
+    },
+    "displayName": "Container",
+    "custom": {},
+    "parent": "darkInner1",
+    "hidden": false,
+    "nodes": [
+      "darkEyb001",
+      "darkHead01",
+      "darkText01",
+      "darkCta001"
+    ],
+    "linkedNodes": {}
+  },
+  "darkEyb001": {
+    "type": {
+      "resolvedName": "TextBlock"
+    },
+    "isCanvas": false,
+    "props": {
+      "text": "BUILT FOR CONVERSION",
+      "align": "left",
+      "textColor": "#4ade80",
+      "fontSize": 13,
+      "fontSizeResponsive": {},
+      "lineHeight": 1.6,
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      }
+    },
+    "displayName": "Text",
+    "custom": {},
+    "parent": "darkCopy01",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
+  },
+  "darkHead01": {
+    "type": {
+      "resolvedName": "Header"
+    },
+    "isCanvas": false,
+    "props": {
+      "text": "Test, tweak, and watch your numbers climb",
+      "level": "h2",
+      "align": "left",
+      "textColor": "#ffffff",
+      "fontSize": 34,
+      "lineHeight": 1.2,
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      }
+    },
+    "displayName": "Header",
+    "custom": {},
+    "parent": "darkCopy01",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
+  },
+  "darkText01": {
+    "type": {
+      "resolvedName": "TextBlock"
+    },
+    "isCanvas": false,
+    "props": {
+      "text": "Swap headlines, run variants, and capture leads with forms that sync straight to your stack. Every change is measurable, so you always know what's working.",
+      "align": "left",
+      "textColor": "#9ca3af",
+      "fontSize": 16,
+      "fontSizeResponsive": {},
+      "lineHeight": 1.6,
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      }
+    },
+    "displayName": "Text",
+    "custom": {},
+    "parent": "darkCopy01",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
+  },
+  "darkCta001": {
+    "type": {
+      "resolvedName": "CtaButton"
+    },
+    "isCanvas": false,
+    "props": {
+      "label": "Explore the editor",
+      "href": "#",
+      "variant": "primary",
+      "backgroundColor": "#16a34a",
+      "textColor": "#ffffff",
+      "fontSize": 16,
+      "fontSizeResponsive": {},
+      "borderRadius": 10,
+      "width": "max-content",
+      "height": "max-content",
+      "padding": {
+        "top": "13",
+        "right": "24",
+        "bottom": "13",
+        "left": "24"
+      },
+      "margin": {
+        "top": "6",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      }
+    },
+    "displayName": "Button",
+    "custom": {},
+    "parent": "darkCopy01",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
+  },
+  "demo000001": {
+    "type": {
+      "resolvedName": "Container"
+    },
+    "isCanvas": true,
+    "props": {
+      "background": "#ffffff",
+      "padding": {
+        "top": "80",
+        "right": "24",
+        "bottom": "80",
+        "left": "24"
+      },
+      "paddingResponsive": {},
+      "margin": {
+        "top": "0",
+        "right": "auto",
+        "bottom": "0",
+        "left": "auto"
+      },
+      "marginResponsive": {},
+      "borderRadius": 0,
+      "border": "",
+      "display": "flex",
+      "flexDirection": "column",
+      "flexDirectionResponsive": {},
+      "justifyContent": "flex-start",
+      "alignItems": "center",
+      "gap": "40",
+      "width": "100%",
+      "height": "max-content",
+      "maxWidth": "1024",
+      "columns": 3,
+      "columnsResponsive": {},
+      "gridTemplateColumns": "",
+      "gridTemplateColumnsResponsive": {},
+      "gridTemplateRows": ""
+    },
+    "displayName": "Container",
+    "custom": {},
+    "parent": "ROOT",
+    "hidden": false,
+    "nodes": [
+      "demoHead01",
+      "demoInner1"
+    ],
+    "linkedNodes": {}
+  },
+  "demoHead01": {
+    "type": {
+      "resolvedName": "Header"
+    },
+    "isCanvas": false,
+    "props": {
+      "text": "See Campaignr in action",
+      "level": "h2",
+      "align": "center",
+      "textColor": "#0f1a14",
+      "fontSize": 36,
+      "lineHeight": 1.2,
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      }
+    },
+    "displayName": "Header",
+    "custom": {},
+    "parent": "demo000001",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
+  },
+  "demoInner1": {
+    "type": {
+      "resolvedName": "Container"
+    },
+    "isCanvas": true,
+    "props": {
+      "background": "transparent",
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "paddingResponsive": {},
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "marginResponsive": {},
+      "borderRadius": 0,
+      "border": "",
+      "display": "grid",
+      "flexDirection": "row",
+      "flexDirectionResponsive": {},
+      "justifyContent": "flex-start",
+      "alignItems": "center",
+      "gap": "40",
+      "width": "100%",
+      "height": "max-content",
+      "maxWidth": "",
+      "columns": 3,
+      "columnsResponsive": {
+        "tablet": 1
+      },
+      "gridTemplateColumns": "1fr 1.4fr",
+      "gridTemplateColumnsResponsive": {},
+      "gridTemplateRows": ""
+    },
+    "displayName": "Container",
+    "custom": {},
+    "parent": "demo000001",
+    "hidden": false,
+    "nodes": [
+      "demoCopy01",
+      "demoVid001"
+    ],
+    "linkedNodes": {}
+  },
+  "demoCopy01": {
+    "type": {
+      "resolvedName": "Container"
+    },
+    "isCanvas": true,
+    "props": {
+      "background": "transparent",
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "paddingResponsive": {},
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "marginResponsive": {},
+      "borderRadius": 0,
+      "border": "",
+      "display": "flex",
+      "flexDirection": "column",
+      "flexDirectionResponsive": {},
+      "justifyContent": "center",
+      "alignItems": "flex-start",
+      "gap": "20",
+      "width": "auto",
+      "height": "max-content",
+      "maxWidth": "",
+      "columns": 3,
+      "columnsResponsive": {},
+      "gridTemplateColumns": "",
+      "gridTemplateColumnsResponsive": {},
+      "gridTemplateRows": ""
+    },
+    "displayName": "Container",
+    "custom": {},
+    "parent": "demoInner1",
+    "hidden": false,
+    "nodes": [
+      "demoText01",
+      "demoCta001"
+    ],
+    "linkedNodes": {}
+  },
+  "demoText01": {
+    "type": {
+      "resolvedName": "TextBlock"
+    },
+    "isCanvas": false,
+    "props": {
+      "text": "Watch a full campaign page come together, from blank canvas to published, in under three minutes. No plugins, no hand-off, no waiting on engineering.",
+      "align": "left",
+      "textColor": "#6b7280",
+      "fontSize": 17,
+      "fontSizeResponsive": {},
+      "lineHeight": 1.6,
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      }
+    },
+    "displayName": "Text",
+    "custom": {},
+    "parent": "demoCopy01",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
+  },
+  "demoCta001": {
+    "type": {
+      "resolvedName": "CtaButton"
+    },
+    "isCanvas": false,
+    "props": {
+      "label": "Book a walkthrough",
+      "href": "#",
+      "variant": "secondary",
+      "backgroundColor": "#dcfce7",
+      "textColor": "#166534",
+      "fontSize": 16,
+      "fontSizeResponsive": {},
+      "borderRadius": 10,
+      "width": "max-content",
+      "height": "max-content",
+      "padding": {
+        "top": "13",
+        "right": "24",
+        "bottom": "13",
+        "left": "24"
+      },
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      }
+    },
+    "displayName": "Button",
+    "custom": {},
+    "parent": "demoCopy01",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
+  },
+  "demoVid001": {
+    "type": {
+      "resolvedName": "Video"
+    },
+    "isCanvas": false,
+    "props": {
+      "videoId": "u31qwQUeGuM",
+      "aspectRatio": "16:9"
+    },
+    "displayName": "Video",
+    "custom": {},
+    "parent": "demoInner1",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
+  },
+  "ctaBand001": {
+    "type": {
+      "resolvedName": "Container"
+    },
+    "isCanvas": true,
+    "props": {
+      "background": "#16a34a",
+      "padding": {
+        "top": "80",
+        "right": "24",
+        "bottom": "80",
+        "left": "24"
+      },
+      "paddingResponsive": {},
+      "margin": {
+        "top": "0",
+        "right": "auto",
+        "bottom": "0",
+        "left": "auto"
+      },
+      "marginResponsive": {},
+      "borderRadius": 0,
+      "border": "",
+      "display": "flex",
+      "flexDirection": "column",
+      "flexDirectionResponsive": {},
+      "justifyContent": "center",
+      "alignItems": "center",
+      "gap": "0",
+      "width": "100%",
+      "height": "max-content",
+      "maxWidth": "",
+      "columns": 3,
+      "columnsResponsive": {},
+      "gridTemplateColumns": "",
+      "gridTemplateColumnsResponsive": {},
+      "gridTemplateRows": ""
+    },
+    "displayName": "Container",
+    "custom": {},
+    "parent": "ROOT",
+    "hidden": false,
+    "nodes": [
+      "ctaBandInr"
+    ],
+    "linkedNodes": {}
+  },
+  "ctaBandInr": {
+    "type": {
+      "resolvedName": "Container"
+    },
+    "isCanvas": true,
+    "props": {
+      "background": "transparent",
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "paddingResponsive": {},
+      "margin": {
+        "top": "0",
+        "right": "auto",
+        "bottom": "0",
+        "left": "auto"
+      },
+      "marginResponsive": {},
+      "borderRadius": 0,
+      "border": "",
+      "display": "flex",
+      "flexDirection": "column",
+      "flexDirectionResponsive": {},
+      "justifyContent": "center",
+      "alignItems": "center",
+      "gap": "18",
+      "width": "100%",
+      "height": "max-content",
+      "maxWidth": "760",
+      "columns": 3,
+      "columnsResponsive": {},
+      "gridTemplateColumns": "",
+      "gridTemplateColumnsResponsive": {},
+      "gridTemplateRows": ""
+    },
+    "displayName": "Container",
+    "custom": {},
+    "parent": "ctaBand001",
+    "hidden": false,
+    "nodes": [
+      "ctaBandHd1",
+      "ctaBandSb1",
+      "ctaBandBt1"
+    ],
+    "linkedNodes": {}
+  },
+  "ctaBandHd1": {
+    "type": {
+      "resolvedName": "Header"
+    },
+    "isCanvas": false,
+    "props": {
+      "text": "Ready to launch your next campaign?",
+      "level": "h2",
+      "align": "center",
+      "textColor": "#ffffff",
+      "fontSize": 38,
+      "lineHeight": 1.2,
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      }
+    },
+    "displayName": "Header",
+    "custom": {},
+    "parent": "ctaBandInr",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
+  },
+  "ctaBandSb1": {
+    "type": {
+      "resolvedName": "TextBlock"
+    },
+    "isCanvas": false,
+    "props": {
+      "text": "Join the marketers building faster with Campaignr. Free to start, no card required.",
+      "align": "center",
+      "textColor": "#dcfce7",
+      "fontSize": 17,
+      "fontSizeResponsive": {},
+      "lineHeight": 1.6,
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      }
+    },
+    "displayName": "Text",
+    "custom": {},
+    "parent": "ctaBandInr",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
+  },
+  "ctaBandBt1": {
+    "type": {
+      "resolvedName": "CtaButton"
+    },
+    "isCanvas": false,
+    "props": {
+      "label": "Get started free",
+      "href": "#",
+      "variant": "primary",
+      "backgroundColor": "#ffffff",
+      "textColor": "#16a34a",
+      "fontSize": 16,
+      "fontSizeResponsive": {},
+      "borderRadius": 10,
+      "width": "max-content",
+      "height": "max-content",
+      "padding": {
+        "top": "14",
+        "right": "28",
+        "bottom": "14",
+        "left": "28"
+      },
+      "margin": {
+        "top": "8",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      }
+    },
+    "displayName": "Button",
+    "custom": {},
+    "parent": "ctaBandInr",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
+  },
+  "footer0001": {
+    "type": {
+      "resolvedName": "Container"
+    },
+    "isCanvas": true,
+    "props": {
+      "background": "#0c1411",
+      "padding": {
+        "top": "36",
+        "right": "24",
+        "bottom": "36",
+        "left": "24"
+      },
+      "paddingResponsive": {},
+      "margin": {
+        "top": "0",
+        "right": "auto",
+        "bottom": "0",
+        "left": "auto"
+      },
+      "marginResponsive": {},
+      "borderRadius": 0,
+      "border": "",
+      "display": "flex",
+      "flexDirection": "column",
+      "flexDirectionResponsive": {},
+      "justifyContent": "center",
+      "alignItems": "center",
+      "gap": "0",
+      "width": "100%",
+      "height": "max-content",
+      "maxWidth": "",
+      "columns": 3,
+      "columnsResponsive": {},
+      "gridTemplateColumns": "",
+      "gridTemplateColumnsResponsive": {},
+      "gridTemplateRows": ""
+    },
+    "displayName": "Container",
+    "custom": {},
+    "parent": "ROOT",
+    "hidden": false,
+    "nodes": [
+      "footInner1"
+    ],
+    "linkedNodes": {}
+  },
+  "footInner1": {
+    "type": {
+      "resolvedName": "Container"
+    },
+    "isCanvas": true,
+    "props": {
+      "background": "transparent",
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "paddingResponsive": {},
+      "margin": {
+        "top": "0",
+        "right": "auto",
+        "bottom": "0",
+        "left": "auto"
+      },
+      "marginResponsive": {},
+      "borderRadius": 0,
+      "border": "",
+      "display": "flex",
+      "flexDirection": "row",
+      "flexDirectionResponsive": {
+        "tablet": "column"
+      },
+      "justifyContent": "space-between",
+      "alignItems": "center",
+      "gap": "20",
+      "width": "100%",
+      "height": "max-content",
+      "maxWidth": "1024",
+      "columns": 3,
+      "columnsResponsive": {},
+      "gridTemplateColumns": "",
+      "gridTemplateColumnsResponsive": {},
+      "gridTemplateRows": ""
+    },
+    "displayName": "Container",
+    "custom": {},
+    "parent": "footer0001",
+    "hidden": false,
+    "nodes": [
+      "footBrand1",
+      "footCopy01"
+    ],
+    "linkedNodes": {}
+  },
+  "footBrand1": {
+    "type": {
+      "resolvedName": "Header"
+    },
+    "isCanvas": false,
+    "props": {
+      "text": "Campaignr",
+      "level": "h3",
+      "align": "left",
+      "textColor": "#4ade80",
+      "fontSize": 20,
+      "lineHeight": 1.2,
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      }
+    },
+    "displayName": "Header",
+    "custom": {},
+    "parent": "footInner1",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
+  },
+  "footCopy01": {
+    "type": {
+      "resolvedName": "TextBlock"
+    },
+    "isCanvas": false,
+    "props": {
+      "text": "© 2026 Campaignr. All rights reserved.",
+      "align": "right",
+      "textColor": "#9ca3af",
+      "fontSize": 14,
+      "fontSizeResponsive": {},
+      "lineHeight": 1.6,
+      "padding": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      },
+      "margin": {
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0"
+      }
+    },
+    "displayName": "Text",
+    "custom": {},
+    "parent": "footInner1",
+    "hidden": false,
+    "nodes": [],
+    "linkedNodes": {}
+  }
 };

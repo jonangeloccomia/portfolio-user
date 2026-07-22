@@ -32,14 +32,18 @@ export const PageCanvas: UserComponent<Partial<PageCanvasProps>> = ({
       ref={(ref) => {
         if (ref) connect(ref);
       }}
-      style={{
-        background,
-        color: textColor,
-        paddingTop: toCssLength(padding.top),
-        paddingRight: toCssLength(padding.right),
-        paddingBottom: toCssLength(padding.bottom),
-        paddingLeft: toCssLength(padding.left),
-      }}
+      style={
+        {
+          background,
+          color: textColor,
+          paddingTop: toCssLength(padding.top),
+          paddingRight: toCssLength(padding.right),
+          paddingBottom: toCssLength(padding.bottom),
+          paddingLeft: toCssLength(padding.left),
+          containerType: "inline-size",
+          containerName: "page",
+        } as React.CSSProperties
+      }
       className="mx-auto flex w-full flex-col min-h-full"
     >
       {hasChildren ? (

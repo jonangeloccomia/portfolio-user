@@ -1,6 +1,10 @@
 import type { GeneratedPage, Section, Theme } from "./schema";
 
 type Spacing = { top: string; right: string; bottom: string; left: string };
+type Breakpoint = "tablet" | "mobile";
+type ResponsiveSpacing = Partial<Record<Breakpoint, Spacing>>;
+type ResponsiveNumber = Partial<Record<Breakpoint, number>>;
+type ResponsiveString = Partial<Record<Breakpoint, string>>;
 
 type CraftNode = {
   type: { resolvedName: string };
@@ -29,49 +33,76 @@ function generateId(): string {
 // ---- construction tokens ---------------------------------------------------
 const ZERO: Spacing = { top: "0", right: "0", bottom: "0", left: "0" };
 const AUTO_X: Spacing = { top: "0", right: "auto", bottom: "0", left: "auto" };
+
+// Vertical rhythm tightens as the viewport narrows.
 const BAND_PADDING: Spacing = { top: "80", right: "24", bottom: "80", left: "24" };
+const BAND_PADDING_RESPONSIVE: ResponsiveSpacing = {
+  tablet: { top: "56", right: "24", bottom: "56", left: "24" },
+  mobile: { top: "40", right: "16", bottom: "40", left: "16" },
+};
+const NAV_PADDING: Spacing = { top: "18", right: "24", bottom: "18", left: "24" };
+const NAV_PADDING_RESPONSIVE: ResponsiveSpacing = {
+  mobile: { top: "14", right: "16", bottom: "14", left: "16" },
+};
+const FOOTER_PADDING: Spacing = { top: "36", right: "24", bottom: "36", left: "24" };
+const FOOTER_PADDING_RESPONSIVE: ResponsiveSpacing = {
+  mobile: { top: "28", right: "16", bottom: "28", left: "16" },
+};
 const CARD_PADDING: Spacing = { top: "28", right: "28", bottom: "28", left: "28" };
+const CARD_PADDING_RESPONSIVE: ResponsiveSpacing = {
+  mobile: { top: "22", right: "22", bottom: "22", left: "22" },
+};
 const CTA_PADDING: Spacing = { top: "14", right: "26", bottom: "14", left: "26" };
 
 const INNER_WIDTH = "1024";
+const NARROW_WIDTH = "760";
 const CARD_RADIUS = 16;
+const MEDIA_RADIUS = 16;
 const BTN_RADIUS = 10;
 const CHIP_SIZE = "48";
+const HEADING_LINE_HEIGHT = 1.2;
+const BODY_LINE_HEIGHT = 1.6;
 
-// type scale
+// Type scale: every size ships with its tablet/mobile step-downs so a 52px
+// hero headline doesn't overflow a 380px screen.
+type FontStep = { base: number; tablet: number; mobile: number };
 const FS = {
-  hero: 52,
-  splitHeading: 34,
-  sectionHeading: 36,
-  ctaHeading: 38,
-  cardTitle: 20,
-  brand: 22,
-  eyebrow: 13,
-  lead: 17,
-  body: 16,
-  cardBody: 15,
-  small: 14,
-} as const;
+  hero: { base: 52, tablet: 40, mobile: 32 },
+  sectionHeading: { base: 36, tablet: 30, mobile: 26 },
+  splitHeading: { base: 34, tablet: 28, mobile: 24 },
+  ctaHeading: { base: 38, tablet: 30, mobile: 26 },
+  cardTitle: { base: 20, tablet: 20, mobile: 18 },
+  brand: { base: 22, tablet: 20, mobile: 18 },
+  eyebrow: { base: 13, tablet: 13, mobile: 12 },
+  lead: { base: 17, tablet: 16, mobile: 16 },
+  body: { base: 16, tablet: 15, mobile: 15 },
+  cardBody: { base: 15, tablet: 15, mobile: 14 },
+  small: { base: 14, tablet: 14, mobile: 13 },
+} satisfies Record<string, FontStep>;
+
+function responsiveFont(step: FontStep): ResponsiveNumber {
+  return { tablet: step.tablet, mobile: step.mobile };
+}
 
 type Palette = {
-  background: string; // section band background
-  surface: string; // subtle alt background for card-bearing bands
+  background: string;
+  surface: string;
   heading: string;
   body: string;
   muted: string;
-  accent: string; // primary button / accent fill
-  accentText: string; // text on the accent fill
-  eyebrow: string; // kicker label color
+  accent: string;
+  accentText: string;
+  eyebrow: string;
   cardBg: string;
   cardBorder: string;
   chipBg: string;
+  mediaBg: string;
 };
 
-// "light" / "brand" / "dark" are the site's refreshed on-brand green/near-black
-// system (kept in sync with lib/starter-templates.ts). The rest are a curated,
-// contrast-checked bank of distinct moods so generated pages aren't always a
-// recolor of the brand theme — Claude picks a theme name, never raw hex, so
-// every combination stays readable.
+// "light" / "brand" / "dark" mirror the refreshed on-brand green/near-black
+// system in lib/starter-templates.ts. The rest are a curated, contrast-checked
+// bank of distinct moods so generated pages aren't always a recolor of the
+// brand theme — Claude picks a theme name, never raw hex.
 const THEME_PALETTE: Record<Theme, Palette> = {
   light: {
     background: "#ffffff",
@@ -85,6 +116,7 @@ const THEME_PALETTE: Record<Theme, Palette> = {
     cardBg: "#ffffff",
     cardBorder: "1px solid #e8ede9",
     chipBg: "#dcfce7",
+    mediaBg: "#f6f9f7",
   },
   brand: {
     background: "#16a34a",
@@ -98,6 +130,7 @@ const THEME_PALETTE: Record<Theme, Palette> = {
     cardBg: "#15803d",
     cardBorder: "1px solid rgba(255,255,255,0.22)",
     chipBg: "#ffffff",
+    mediaBg: "#15803d",
   },
   dark: {
     background: "#0c1411",
@@ -111,6 +144,7 @@ const THEME_PALETTE: Record<Theme, Palette> = {
     cardBg: "#131f19",
     cardBorder: "1px solid rgba(255,255,255,0.08)",
     chipBg: "#16a34a",
+    mediaBg: "#131f19",
   },
   warm: {
     background: "#fdf6ec",
@@ -124,6 +158,7 @@ const THEME_PALETTE: Record<Theme, Palette> = {
     cardBg: "#ffffff",
     cardBorder: "1px solid #ecd9bf",
     chipBg: "#fde4d3",
+    mediaBg: "#f8ecd9",
   },
   cool: {
     background: "#f0f5fa",
@@ -137,6 +172,7 @@ const THEME_PALETTE: Record<Theme, Palette> = {
     cardBg: "#ffffff",
     cardBorder: "1px solid #d5e2ef",
     chipBg: "#dbe7f5",
+    mediaBg: "#e6eef7",
   },
   bold: {
     background: "#0f172a",
@@ -150,6 +186,7 @@ const THEME_PALETTE: Record<Theme, Palette> = {
     cardBg: "#16213b",
     cardBorder: "1px solid rgba(255,255,255,0.08)",
     chipBg: "#f97316",
+    mediaBg: "#16213b",
   },
   pastel: {
     background: "#f5f0ff",
@@ -163,6 +200,7 @@ const THEME_PALETTE: Record<Theme, Palette> = {
     cardBg: "#ffffff",
     cardBorder: "1px solid #e2d5fb",
     chipBg: "#e9dcff",
+    mediaBg: "#ece2ff",
   },
   mono: {
     background: "#f8f8f8",
@@ -176,6 +214,7 @@ const THEME_PALETTE: Record<Theme, Palette> = {
     cardBg: "#ffffff",
     cardBorder: "1px solid #e4e4e7",
     chipBg: "#e4e4e7",
+    mediaBg: "#efefef",
   },
 };
 
@@ -187,16 +226,66 @@ function attach(tree: CraftContent, parentId: string, childId: string) {
   tree[parentId].nodes.push(childId);
 }
 
-function container(
-  tree: CraftContent,
-  parent: string,
-  props: Record<string, unknown>,
-): string {
+// ---- prop factories --------------------------------------------------------
+// Every Container gets the full prop set so the editor's settings panels always
+// have something to bind to (missing keys make controls render undefined).
+
+type ContainerOpts = {
+  background: string;
+  padding?: Spacing;
+  paddingResponsive?: ResponsiveSpacing;
+  margin?: Spacing;
+  marginResponsive?: ResponsiveSpacing;
+  borderRadius?: number;
+  border?: string;
+  display: "flex" | "grid";
+  flexDirection?: "row" | "column";
+  flexDirectionResponsive?: ResponsiveString;
+  justifyContent?: string;
+  alignItems?: string;
+  gap?: string;
+  width?: string;
+  height?: string;
+  maxWidth?: string;
+  columns?: number;
+  columnsResponsive?: ResponsiveNumber;
+  gridTemplateColumns?: string;
+  gridTemplateColumnsResponsive?: ResponsiveString;
+  gridTemplateRows?: string;
+};
+
+function containerProps(o: ContainerOpts): Record<string, unknown> {
+  return {
+    background: o.background,
+    padding: o.padding ?? ZERO,
+    paddingResponsive: o.paddingResponsive ?? {},
+    margin: o.margin ?? ZERO,
+    marginResponsive: o.marginResponsive ?? {},
+    borderRadius: o.borderRadius ?? 0,
+    border: o.border ?? "",
+    display: o.display,
+    flexDirection: o.flexDirection ?? "column",
+    flexDirectionResponsive: o.flexDirectionResponsive ?? {},
+    justifyContent: o.justifyContent ?? "flex-start",
+    alignItems: o.alignItems ?? "stretch",
+    gap: o.gap ?? "20",
+    width: o.width ?? "100%",
+    height: o.height ?? "max-content",
+    maxWidth: o.maxWidth ?? "",
+    columns: o.columns ?? 3,
+    columnsResponsive: o.columnsResponsive ?? {},
+    gridTemplateColumns: o.gridTemplateColumns ?? "",
+    gridTemplateColumnsResponsive: o.gridTemplateColumnsResponsive ?? {},
+    gridTemplateRows: o.gridTemplateRows ?? "",
+  };
+}
+
+function container(tree: CraftContent, parent: string, o: ContainerOpts): string {
   const id = generateId();
   addNode(tree, id, {
     type: { resolvedName: "Container" },
     isCanvas: true,
-    props,
+    props: containerProps(o),
     displayName: "Container",
     custom: {},
     parent,
@@ -208,9 +297,33 @@ function container(
   return id;
 }
 
-// A full-bleed section band (100% wide, colored, vertical rhythm) wrapping a
-// centered 1024 inner container that actually lays out the content. Returns the
-// inner id so callers attach their content there.
+// Desktop track list + the tablet/mobile collapse, expressed through BOTH the
+// `columns` and `gridTemplateColumns` channels so the Container resolves the
+// same layout whichever one it reads.
+function gridTracks(
+  desktop: number | string,
+  opts: { tablet: number; mobile: number },
+): Pick<
+  ContainerOpts,
+  "columns" | "columnsResponsive" | "gridTemplateColumns" | "gridTemplateColumnsResponsive"
+> {
+  const repeat = (n: number) => Array(n).fill("1fr").join(" ");
+  const desktopTracks = typeof desktop === "number" ? repeat(desktop) : desktop;
+  const desktopCount =
+    typeof desktop === "number" ? desktop : desktop.trim().split(/\s+/).length;
+  return {
+    columns: desktopCount,
+    gridTemplateColumns: desktopTracks,
+    columnsResponsive: { tablet: opts.tablet, mobile: opts.mobile },
+    gridTemplateColumnsResponsive: {
+      tablet: repeat(opts.tablet),
+      mobile: repeat(opts.mobile),
+    },
+  };
+}
+
+// A full-bleed section band wrapping a centered, max-width-constrained inner
+// container. Returns the inner id — callers attach content there.
 function makeBand(
   tree: CraftContent,
   parent: string,
@@ -218,74 +331,79 @@ function makeBand(
     background: string;
     innerDisplay: "flex" | "grid";
     innerFlexDirection?: "row" | "column";
-    innerGridColumns?: string;
     innerJustify?: string;
     innerAlign?: string;
     innerGap?: string;
-    innerWidth?: string;
+    innerMaxWidth?: string;
+    tracks?: ReturnType<typeof gridTracks>;
   },
 ): string {
   const outer = container(tree, parent, {
     background: opts.background,
     padding: BAND_PADDING,
+    paddingResponsive: BAND_PADDING_RESPONSIVE,
     margin: AUTO_X,
-    borderRadius: 0,
     display: "flex",
     flexDirection: "column",
     justifyContent: "flex-start",
     alignItems: "center",
     gap: "0",
     width: "100%",
-    height: "max-content",
-    gridTemplateColumns: "",
-    gridTemplateRows: "",
   });
   const inner = container(tree, outer, {
     background: "transparent",
-    padding: ZERO,
     margin: AUTO_X,
-    borderRadius: 0,
     display: opts.innerDisplay,
     flexDirection: opts.innerFlexDirection ?? "column",
     justifyContent: opts.innerJustify ?? "flex-start",
     alignItems: opts.innerAlign ?? "stretch",
     gap: opts.innerGap ?? "20",
-    width: opts.innerWidth ?? INNER_WIDTH,
-    height: "max-content",
-    gridTemplateColumns: opts.innerGridColumns ?? "",
-    gridTemplateRows: "",
+    width: "100%",
+    maxWidth: opts.innerMaxWidth ?? INNER_WIDTH,
+    ...(opts.tracks ?? {}),
   });
   return inner;
 }
 
-// A transparent, unpadded layout container nested inside a band.
+// Transparent, unpadded layout group nested inside a band.
 function makeGroup(
   tree: CraftContent,
   parent: string,
   opts: {
     display: "flex" | "grid";
     flexDirection?: "row" | "column";
-    gridTemplateColumns?: string;
+    flexDirectionResponsive?: ResponsiveString;
     justifyContent?: string;
     alignItems?: string;
     gap?: string;
     width?: string;
+    tracks?: ReturnType<typeof gridTracks>;
   },
 ): string {
   return container(tree, parent, {
     background: "transparent",
-    padding: ZERO,
-    margin: ZERO,
-    borderRadius: 0,
     display: opts.display,
     flexDirection: opts.flexDirection ?? "column",
+    flexDirectionResponsive: opts.flexDirectionResponsive ?? {},
     justifyContent: opts.justifyContent ?? "flex-start",
     alignItems: opts.alignItems ?? "stretch",
     gap: opts.gap ?? "20",
     width: opts.width ?? "auto",
-    height: "max-content",
-    gridTemplateColumns: opts.gridTemplateColumns ?? "",
-    gridTemplateRows: "",
+    ...(opts.tracks ?? {}),
+  });
+}
+
+// ImageBlock has no borderRadius prop, so rounding lives on a wrapper.
+function makeMediaFrame(tree: CraftContent, parent: string, palette: Palette): string {
+  return container(tree, parent, {
+    background: palette.mediaBg,
+    borderRadius: MEDIA_RADIUS,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "0",
+    width: "100%",
   });
 }
 
@@ -293,8 +411,9 @@ function makeCard(tree: CraftContent, parent: string, palette: Palette): string 
   return container(tree, parent, {
     background: palette.cardBg,
     padding: CARD_PADDING,
-    margin: ZERO,
+    paddingResponsive: CARD_PADDING_RESPONSIVE,
     borderRadius: CARD_RADIUS,
+    border: palette.cardBorder,
     display: "flex",
     flexDirection: "column",
     justifyContent: "flex-start",
@@ -302,17 +421,12 @@ function makeCard(tree: CraftContent, parent: string, palette: Palette): string 
     gap: "14",
     width: "100%",
     height: "auto",
-    gridTemplateColumns: "",
-    gridTemplateRows: "",
-    border: palette.cardBorder,
   });
 }
 
 function makeChip(tree: CraftContent, parent: string, palette: Palette): string {
   return container(tree, parent, {
     background: palette.chipBg,
-    padding: ZERO,
-    margin: ZERO,
     borderRadius: 12,
     display: "flex",
     flexDirection: "row",
@@ -321,38 +435,7 @@ function makeChip(tree: CraftContent, parent: string, palette: Palette): string 
     gap: "0",
     width: CHIP_SIZE,
     height: CHIP_SIZE,
-    gridTemplateColumns: "",
-    gridTemplateRows: "",
   });
-}
-
-function makeEyebrow(
-  tree: CraftContent,
-  parent: string,
-  text: string,
-  palette: Palette,
-  align: "left" | "center",
-) {
-  const id = generateId();
-  addNode(tree, id, {
-    type: { resolvedName: "TextBlock" },
-    isCanvas: false,
-    props: {
-      text: text.toUpperCase(),
-      align,
-      textColor: palette.eyebrow,
-      fontSize: FS.eyebrow,
-      padding: ZERO,
-      margin: ZERO,
-    },
-    displayName: "Text",
-    custom: {},
-    parent,
-    hidden: false,
-    nodes: [],
-    linkedNodes: {},
-  });
-  attach(tree, parent, id);
 }
 
 function makeHeader(
@@ -360,15 +443,25 @@ function makeHeader(
   parent: string,
   text: string,
   color: string,
-  fontSize: number,
-  align: "left" | "center",
+  step: FontStep,
+  align: "left" | "center" | "right",
   level: string = "h2",
 ) {
   const id = generateId();
   addNode(tree, id, {
     type: { resolvedName: "Header" },
     isCanvas: false,
-    props: { text, level, align, textColor: color, fontSize, padding: ZERO, margin: ZERO },
+    props: {
+      text,
+      level,
+      align,
+      textColor: color,
+      fontSize: step.base,
+      fontSizeResponsive: responsiveFont(step),
+      lineHeight: HEADING_LINE_HEIGHT,
+      padding: ZERO,
+      margin: ZERO,
+    },
     displayName: "Header",
     custom: {},
     parent,
@@ -385,13 +478,22 @@ function makeTextBlock(
   text: string,
   color: string,
   align: "left" | "center" | "right",
-  fontSize: number = FS.body,
+  step: FontStep = FS.body,
 ) {
   const id = generateId();
   addNode(tree, id, {
     type: { resolvedName: "TextBlock" },
     isCanvas: false,
-    props: { text, align, textColor: color, fontSize, padding: ZERO, margin: ZERO },
+    props: {
+      text,
+      align,
+      textColor: color,
+      fontSize: step.base,
+      fontSizeResponsive: responsiveFont(step),
+      lineHeight: BODY_LINE_HEIGHT,
+      padding: ZERO,
+      margin: ZERO,
+    },
     displayName: "Text",
     custom: {},
     parent,
@@ -402,28 +504,31 @@ function makeTextBlock(
   attach(tree, parent, id);
 }
 
+function makeEyebrow(
+  tree: CraftContent,
+  parent: string,
+  text: string,
+  palette: Palette,
+  align: "left" | "center",
+) {
+  makeTextBlock(tree, parent, text.toUpperCase(), palette.eyebrow, align, FS.eyebrow);
+}
+
 function makeImage(
   tree: CraftContent,
   parent: string,
   width: number,
   height: number,
-  opts: { rounded?: boolean; grayscale?: boolean } = {},
+  opts: { alt?: string; grayscale?: boolean; width?: string } = {},
 ) {
   const id = generateId();
-  // Seeded URL so the generated page is stable across reloads instead of
-  // reshuffling every render.
+  // Seeded URL so the page is stable across reloads instead of reshuffling.
   const src = `https://picsum.photos/seed/${id}/${width}/${height}${opts.grayscale ? "?grayscale" : ""
     }`;
   addNode(tree, id, {
     type: { resolvedName: "ImageBlock" },
     isCanvas: false,
-    props: {
-      src,
-      alt: "",
-      width: "100%",
-      height: "auto",
-      ...(opts.rounded ? { borderRadius: 16 } : {}),
-    },
+    props: { src, alt: opts.alt ?? "", width: opts.width ?? "100%", height: "auto" },
     displayName: "Image",
     custom: {},
     parent,
@@ -439,6 +544,7 @@ function makeCtaButton(
   parent: string,
   label: string,
   palette: Palette,
+  variant: "primary" | "secondary" = "primary",
 ) {
   const id = generateId();
   addNode(tree, id, {
@@ -447,10 +553,11 @@ function makeCtaButton(
     props: {
       label,
       href: "#",
-      variant: "primary",
+      variant,
       backgroundColor: palette.accent,
       textColor: palette.accentText,
-      fontSize: 16,
+      fontSize: FS.body.base,
+      fontSizeResponsive: responsiveFont(FS.body),
       borderRadius: BTN_RADIUS,
       width: "max-content",
       height: "max-content",
@@ -474,16 +581,18 @@ function buildHero(tree: CraftContent, rootId: string, section: Extract<Section,
   const inner = makeBand(tree, rootId, {
     background: palette.background,
     innerDisplay: "grid",
-    innerGridColumns: section.withImage ? "1.1fr 1fr" : "1fr",
     innerAlign: "center",
     innerGap: "48",
+    tracks: section.withImage
+      ? gridTracks("1.1fr 1fr", { tablet: 1, mobile: 1 })
+      : gridTracks(1, { tablet: 1, mobile: 1 }),
   });
 
   const textCol = makeGroup(tree, inner, {
     display: "flex",
     flexDirection: "column",
-    alignItems: "flex-start",
     justifyContent: "center",
+    alignItems: "flex-start",
     gap: "20",
     width: "auto",
   });
@@ -502,14 +611,8 @@ function buildHero(tree: CraftContent, rootId: string, section: Extract<Section,
   }
 
   if (section.withImage) {
-    const media = makeGroup(tree, inner, {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-      width: "100%",
-    });
-    makeImage(tree, media, 900, 680, { rounded: true });
+    const frame = makeMediaFrame(tree, inner, palette);
+    makeImage(tree, frame, 900, 680);
   }
 }
 
@@ -531,19 +634,22 @@ function buildFeatureGrid(
     makeHeader(tree, inner, section.headline, palette.heading, FS.sectionHeading, "center");
   }
 
-  const columns = Array(section.imageCount).fill("1fr").join(" ");
   const grid = makeGroup(tree, inner, {
     display: "grid",
-    gridTemplateColumns: columns,
     alignItems: "center",
     gap: "20",
     width: "100%",
+    tracks: gridTracks(section.imageCount, {
+      tablet: Math.min(section.imageCount, 3),
+      mobile: 2,
+    }),
   });
 
-  // Uniform aspect ratio across the row (the old builder grew each image, which
-  // made the strip ragged). Seeded + rounded for a clean, stable look.
+  // Uniform aspect ratio across the row — the old builder grew each image,
+  // which made the strip ragged inside equal 1fr tracks.
   for (let i = 0; i < section.imageCount; i++) {
-    makeImage(tree, grid, 640, 400, { rounded: true });
+    const frame = makeMediaFrame(tree, grid, palette);
+    makeImage(tree, frame, 640, 400);
   }
 }
 
@@ -553,6 +659,7 @@ function buildFeatureCards(
   section: Extract<Section, { type: "feature_cards" }>,
 ) {
   const palette = THEME_PALETTE[section.theme];
+  const count = section.cards.length;
   const inner = makeBand(tree, rootId, {
     background: palette.surface,
     innerDisplay: "flex",
@@ -566,13 +673,12 @@ function buildFeatureCards(
     makeHeader(tree, inner, section.headline, palette.heading, FS.sectionHeading, "center");
   }
 
-  const columns = Array(section.cards.length).fill("1fr").join(" ");
   const grid = makeGroup(tree, inner, {
     display: "grid",
-    gridTemplateColumns: columns,
     alignItems: "stretch",
     gap: "24",
     width: "100%",
+    tracks: gridTracks(count, { tablet: Math.min(count, 2), mobile: 1 }),
   });
 
   for (const card of section.cards) {
@@ -592,25 +698,19 @@ function buildContentSplit(
   const inner = makeBand(tree, rootId, {
     background: palette.background,
     innerDisplay: "grid",
-    innerGridColumns: "1fr 1fr",
     innerAlign: "center",
     innerGap: "48",
+    tracks: gridTracks(2, { tablet: 1, mobile: 1 }),
   });
 
-  const media = makeGroup(tree, inner, {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    width: "100%",
-  });
-  makeImage(tree, media, 900, 720, { rounded: true });
+  const frame = makeMediaFrame(tree, inner, palette);
+  makeImage(tree, frame, 900, 720);
 
   const textCol = makeGroup(tree, inner, {
     display: "flex",
     flexDirection: "column",
-    alignItems: "flex-start",
     justifyContent: "center",
+    alignItems: "flex-start",
     gap: "18",
     width: "auto",
   });
@@ -629,10 +729,10 @@ function buildCtaBanner(
     background: palette.background,
     innerDisplay: "flex",
     innerFlexDirection: "column",
-    innerAlign: "center",
     innerJustify: "center",
+    innerAlign: "center",
     innerGap: "18",
-    innerWidth: "760",
+    innerMaxWidth: NARROW_WIDTH,
   });
 
   if (section.eyebrow) makeEyebrow(tree, inner, section.eyebrow, palette, "center");
@@ -647,33 +747,27 @@ function buildNav(tree: CraftContent, rootId: string, brand: string) {
   const light = THEME_PALETTE.light;
   const outer = container(tree, rootId, {
     background: "#ffffff",
-    padding: { top: "18", right: "24", bottom: "18", left: "24" },
+    padding: NAV_PADDING,
+    paddingResponsive: NAV_PADDING_RESPONSIVE,
     margin: AUTO_X,
-    borderRadius: 0,
     display: "flex",
     flexDirection: "column",
-    justifyContent: "flex-start",
-    alignItems: "center",
+    alignItems: "stretch",
     gap: "0",
     width: "100%",
-    height: "max-content",
-    gridTemplateColumns: "",
-    gridTemplateRows: "",
+    maxWidth: "1024",
   });
   const inner = container(tree, outer, {
     background: "transparent",
-    padding: ZERO,
     margin: AUTO_X,
-    borderRadius: 0,
     display: "flex",
     flexDirection: "row",
+    flexDirectionResponsive: { mobile: "row" },
     justifyContent: "space-between",
     alignItems: "center",
     gap: "20",
-    width: INNER_WIDTH,
-    height: "max-content",
-    gridTemplateColumns: "",
-    gridTemplateRows: "",
+    width: "100%",
+    maxWidth: INNER_WIDTH,
   });
   makeHeader(tree, inner, brand, light.accent, FS.brand, "left", "h1");
   makeCtaButton(tree, inner, "Get started", light);
@@ -683,36 +777,41 @@ function buildFooter(tree: CraftContent, rootId: string, brand: string) {
   const year = new Date().getFullYear();
   const outer = container(tree, rootId, {
     background: "#0c1411",
-    padding: { top: "36", right: "24", bottom: "36", left: "24" },
+    padding: FOOTER_PADDING,
+    paddingResponsive: FOOTER_PADDING_RESPONSIVE,
     margin: AUTO_X,
-    borderRadius: 0,
-    display: "flex",
+    display: "grid",
     flexDirection: "column",
-    justifyContent: "flex-start",
     alignItems: "center",
     gap: "0",
     width: "100%",
-    height: "max-content",
-    gridTemplateColumns: "",
-    gridTemplateRows: "",
+    gridTemplateColumns: "1fr",
+    gridTemplateColumnsResponsive: {
+      tablet: "1fr",
+      mobile: "1fr",
+    }
   });
   const inner = container(tree, outer, {
     background: "transparent",
-    padding: ZERO,
     margin: AUTO_X,
-    borderRadius: 0,
     display: "flex",
     flexDirection: "row",
+    flexDirectionResponsive: { mobile: "column" },
     justifyContent: "space-between",
     alignItems: "center",
     gap: "20",
-    width: INNER_WIDTH,
-    height: "max-content",
-    gridTemplateColumns: "",
-    gridTemplateRows: "",
+    width: "100%",
+    maxWidth: INNER_WIDTH,
   });
   makeHeader(tree, inner, brand, "#4ade80", FS.cardTitle, "left", "h3");
-  makeTextBlock(tree, inner, `© ${year} ${brand}. All rights reserved.`, "#9ca3af", "right", FS.small);
+  makeTextBlock(
+    tree,
+    inner,
+    `© ${year} ${brand}. All rights reserved.`,
+    "#9ca3af",
+    "right",
+    FS.small,
+  );
 }
 
 export function buildCraftContent(page: GeneratedPage): CraftContent {
