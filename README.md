@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Campaignr
+
+Campaignr is a landing page builder. Turn a prompt or a drag-and-drop canvas into a published landing page — no dev queue, no boilerplate.
+
+**Live:** [campaignr.jonangelocomia.dev](https://campaignr.jonangelocomia.dev/)
+
+## Features
+
+- **AI-assisted generation** — describe a page and generate a starting layout, powered by the Anthropic SDK.
+- **Drag-and-drop editor** — visual page builder built on [Craft.js](https://craft.js.org/), with a layers panel for structuring components.
+- **Publishing** — publish pages to a shareable slug at `/landing/[slug]`.
+- **Dashboard** — manage builder projects, published pages, and account profile.
+- **Auth** — email/password auth via NextAuth, with a MongoDB adapter.
+- **Billing** — Stripe-powered payments, invoicing, and address collection.
+- **Email** — transactional email templates for account and billing flows.
+
+## Tech Stack
+
+- [Next.js](https://nextjs.org) (App Router) + React 19
+- [Craft.js](https://craft.js.org/) for the drag-and-drop editor
+- MongoDB / Mongoose + NextAuth for data and auth
+- Stripe for payments
+- Tailwind CSS + Radix UI + shadcn for UI
+- Zustand for client state, Zod for validation
+- Vitest for tests
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies, then run the dev server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Other scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build     # production build
+npm run start     # run production build
+npm run lint      # lint
+npm test          # run vitest
+npm run db:seed   # seed the database (db/seed.ts)
+```
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+- `app/(auth)/` — login, register, and marketing landing page
+- `app/dashboard/` — builder, published pages, profile
+- `app/dashboard/builder/` — Craft.js editor (new page, edit by id)
+- `app/landing/[slug]/` — public rendering of published pages
+- `lib/starter-templates.ts` — starter templates for the builder
+- `lib/email-templates.ts` — transactional email HTML
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Environment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Configure MongoDB, NextAuth, Stripe, and Anthropic API credentials via environment variables before running the app (see the respective SDK docs for required keys).
